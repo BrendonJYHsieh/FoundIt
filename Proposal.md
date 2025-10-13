@@ -1,5 +1,11 @@
 # FoundIt: Lost something? We'll find it.
 
+### Team
+- Jasrine Kaur Dham (UNI: jd4122)
+- ChunYao Hsieh (UNI: ch3884)
+- Sanskriti Bansal (UNI: sb5215)
+- Keshav Beriwal (UNI: kb3492)
+
 ## Part 1: Target Audience & Problem Statement
 
 ### Target Audience
