@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up - FoundIt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+      .form-container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      }
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        color: #ffd93d;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: white;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+        font-size: 1rem;
+        box-sizing: border-box;
+      }
+      .form-group input:focus {
+        outline: none;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+      }
+      .btn {
+        width: 100%;
+        padding: 15px;
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .btn:hover {
+        background: #ff5252;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+      }
+      .login-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .login-link a {
+        color: #ffd93d;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+      .error-messages {
+        background: rgba(255, 0, 0, 0.2);
+        border: 1px solid rgba(255, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+      .error-messages ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+      .error-messages li {
+        color: #ffcccc;
+        margin-bottom: 5px;
+      }
+      .back-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .back-link a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.8;
+      }
+      .back-link a:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>🔍 Join FoundIt</h2>
+      <p style="text-align: center; margin-bottom: 30px; opacity: 0.9;">
+        Create your Columbia University account
+      </p>
+
+      <% if @user.errors.any? %>
+        <div class="error-messages">
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_with url: signup_path, local: true, data: { turbo: false } do |form| %>
+        <div class="form-group">
+          <%= form.label :email, "Columbia Email" %>
+          <%= form.email_field :email, placeholder: "your.name@columbia.edu", required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :password, "Password" %>
+          <%= form.password_field :password, placeholder: "Choose a secure password", required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :password_confirmation, "Confirm Password" %>
+          <%= form.password_field :password_confirmation, placeholder: "Confirm your password", required: true %>
+        </div>
+
+        <%= form.submit "Create Account", class: "btn" %>
+      <% end %>
+
+      <div class="login-link">
+        Already have an account? <%= link_to "Log in here", login_path %>
+      </div>
+
+      <div class="back-link">
+        <%= link_to "← Back to Home", root_path %>
+      </div>
+    </div>
+  </body>
+</html>
