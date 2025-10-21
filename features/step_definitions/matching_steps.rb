@@ -1,18 +1,18 @@
 # features/step_definitions/matching_steps.rb
 
-Given("I am logged in as {string}") do |email|
-  @user = User.find_by(email: email) || User.create!(
-    email: email,
-    uni: email.split('@').first + "1234",
-    password: "password123",
-    password_confirmation: "password123",
-    verified: true
-  )
-  visit login_path
-  fill_in "Email", with: email
-  fill_in "Password", with: "password123"
-  click_button "Log In"
-end
+# Given("I am logged in as {string}") do |email|
+#   @user = User.find_by(email: email) || User.create!(
+#     email: email,
+#     uni: email.split('@').first + "1234",
+#     password: "password123",
+#     password_confirmation: "password123",
+#     verified: true
+#   )
+#   visit login_path
+#   fill_in "Email", with: email
+#   fill_in "Password", with: "password123"
+#   click_button "Log In"
+# end
 
 Given("I have posted a lost item {string} at {string} on {string}") do |item_type, location, date|
   @lost_item = @user.lost_items.create!(
