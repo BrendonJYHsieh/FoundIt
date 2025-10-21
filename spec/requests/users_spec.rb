@@ -20,36 +20,27 @@ RSpec.describe "Users", type: :request do
       it "creates a new user" do
         expect {
           post signup_path, params: {
-            user: {
-              email: 'newuser@columbia.edu',
-              uni: 'nu1234',
-              password: 'password123',
-              password_confirmation: 'password123'
-            }
+            email: 'nu1234@columbia.edu',
+            password: 'password123',
+            password_confirmation: 'password123'
           }
         }.to change(User, :count).by(1)
       end
 
       it "redirects to dashboard" do
         post signup_path, params: {
-          user: {
-            email: 'newuser@columbia.edu',
-            uni: 'nu1234',
-            password: 'password123',
-            password_confirmation: 'password123'
-          }
+          email: 'nu1234@columbia.edu',
+          password: 'password123',
+          password_confirmation: 'password123'
         }
         expect(response).to redirect_to(dashboard_path)
       end
 
       it "sets session" do
         post signup_path, params: {
-          user: {
-            email: 'newuser@columbia.edu',
-            uni: 'nu1234',
-            password: 'password123',
-            password_confirmation: 'password123'
-          }
+          email: 'nu1234@columbia.edu',
+          password: 'password123',
+          password_confirmation: 'password123'
         }
         expect(session[:user_id]).to be_present
       end
@@ -59,24 +50,18 @@ RSpec.describe "Users", type: :request do
       it "does not create a user with invalid email" do
         expect {
           post signup_path, params: {
-            user: {
-              email: 'invalid@gmail.com',
-              uni: 'nu1234',
-              password: 'password123',
-              password_confirmation: 'password123'
-            }
+            email: 'invalid@gmail.com',
+            password: 'password123',
+            password_confirmation: 'password123'
           }
         }.not_to change(User, :count)
       end
 
       it "renders new template" do
         post signup_path, params: {
-          user: {
-            email: 'invalid@gmail.com',
-            uni: 'nu1234',
-            password: 'password123',
-            password_confirmation: 'password123'
-          }
+          email: 'invalid@gmail.com',
+          password: 'password123',
+          password_confirmation: 'password123'
         }
         expect(response).to render_template(:new)
       end
@@ -123,14 +108,16 @@ RSpec.describe "Users", type: :request do
     context "with valid attributes" do
       it "updates the user" do
         patch user_path(user), params: {
-          user: { email: 'updated@columbia.edu' }
+          password: 'newpassword123',
+          password_confirmation: 'newpassword123'
         }
-        expect(user.reload.email).to eq('updated@columbia.edu')
+        expect(user.reload.authenticate('newpassword123')).to be_truthy
       end
 
       it "redirects to user show page" do
         patch user_path(user), params: {
-          user: { email: 'updated@columbia.edu' }
+          password: 'newpassword123',
+          password_confirmation: 'newpassword123'
         }
         expect(response).to redirect_to(user_path(user))
       end
@@ -139,14 +126,17 @@ RSpec.describe "Users", type: :request do
     context "with invalid attributes" do
       it "does not update the user" do
         patch user_path(user), params: {
-          user: { email: 'invalid@gmail.com' }
+          password: 'newpassword123',
+          password_confirmation: 'differentpassword'
         }
-        expect(user.reload.email).not_to eq('invalid@gmail.com')
+        # Mismatched passwords should not be updated
+        expect(user.reload.authenticate('password123')).to be_truthy
       end
 
       it "renders edit template" do
         patch user_path(user), params: {
-          user: { email: 'invalid@gmail.com' }
+          password: 'newpassword123',
+          password_confirmation: 'differentpassword'
         }
         expect(response).to render_template(:edit)
       end

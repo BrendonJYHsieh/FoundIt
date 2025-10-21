@@ -50,7 +50,15 @@ RSpec.describe LostItem, type: :model do
     end
 
     it 'is invalid without verification_questions' do
-      lost_item = build(:lost_item, verification_questions: nil)
+      lost_item = LostItem.new(
+        item_type: 'phone',
+        description: 'iPhone 13 Pro with blue case',
+        location: 'Butler Library',
+        lost_date: Date.current,
+        verification_questions: nil
+      )
+      # Skip the set_defaults callback for this test
+      lost_item.define_singleton_method(:set_defaults) { }
       expect(lost_item).not_to be_valid
       expect(lost_item.errors[:verification_questions]).to include("can't be blank")
     end

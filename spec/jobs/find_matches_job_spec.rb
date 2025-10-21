@@ -43,7 +43,7 @@ RSpec.describe FindMatchesJob, type: :job do
             item_type: lost_item.item_type,
             location: lost_item.location,
             found_date: lost_item.lost_date,
-            description: "Item #{i}"
+            description: "Found item number #{i} with detailed description"
           )
         end
 

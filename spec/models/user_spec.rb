@@ -4,8 +4,8 @@ RSpec.describe User, type: :model do
   describe 'validations' do
     it 'is valid with valid attributes' do
       user = User.new(
-        email: 'test@columbia.edu',
-        uni: 'ts1234',
+        email: 'test1@columbia.edu',
+        uni: 'ts1235',
         password: 'password123',
         password_confirmation: 'password123'
       )
@@ -38,26 +38,26 @@ RSpec.describe User, type: :model do
 
     it 'is invalid with duplicate email' do
       User.create!(
-        email: 'test@columbia.edu',
-        uni: 'ts1234',
+        email: 'test2@columbia.edu',
+        uni: 'ts1236',
         password: 'password123',
         password_confirmation: 'password123'
       )
       
-      user = User.new(email: 'test@columbia.edu')
+      user = User.new(email: 'test2@columbia.edu')
       expect(user).not_to be_valid
       expect(user.errors[:email]).to include('has already been taken')
     end
 
     it 'is invalid with duplicate UNI' do
       User.create!(
-        email: 'test@columbia.edu',
-        uni: 'ts1234',
+        email: 'test3@columbia.edu',
+        uni: 'ts1237',
         password: 'password123',
         password_confirmation: 'password123'
       )
       
-      user = User.new(uni: 'ts1234')
+      user = User.new(uni: 'ts1237')
       expect(user).not_to be_valid
       expect(user.errors[:uni]).to include('has already been taken')
     end

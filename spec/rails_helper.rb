@@ -72,4 +72,15 @@ RSpec.configure do |config|
 
   # Include FactoryBot methods
   config.include FactoryBot::Syntax::Methods
+  
+  # Add authentication helper for request specs
+  config.include Devise::Test::IntegrationHelpers, type: :request if defined?(Devise)
+  
+  # Custom sign_in helper for our authentication system
+  config.include Module.new {
+    def sign_in(user)
+      post login_path, params: { email: user.email, password: 'password123' }
+      follow_redirect! if response.redirect?
+    end
+  }, type: :request
 end

@@ -8,9 +8,9 @@ class LostItem < ApplicationRecord
   validates :location, presence: true
   validates :lost_date, presence: true
   validates :status, presence: true, inclusion: { in: %w[active found closed] }
-  validates :verification_questions, presence: true
   
   before_validation :set_defaults
+  validates :verification_questions, presence: true
   after_create :find_potential_matches
   
   scope :active, -> { where(status: 'active') }
