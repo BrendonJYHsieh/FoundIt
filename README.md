@@ -14,7 +14,7 @@
 
 - Ruby 3.3.4
 - Rails 8.0.3
-- SQLite3
+- PostgreSQL 12+
 
 ## Quick Start
 
@@ -22,23 +22,42 @@
    ```bash
    git clone <repository-url>
    cd FoundIt
-   bundle install
    ```
 
-2. **Database setup**
+2. **Run the installation script**
    ```bash
-   rails db:create
-   rails db:migrate
-   rails db:seed
+   ./install.sh
    ```
 
 3. **Start server**
    ```bash
-   rails server
+   ./start_server.sh
    ```
 
 4. **Access application**
    Open `http://localhost:3000`
+
+The installation script will automatically:
+- Check system requirements
+- Install PostgreSQL if needed
+- Install Ruby dependencies
+- Set up separate development and test databases
+- Run migrations and seed data
+- Create helpful scripts for running tests and starting the server
+
+## Database Management
+
+### Cleanup Database
+If you need to reset your databases:
+```bash
+./cleanup_postgres.sh
+```
+
+This script provides options to:
+- Drop and recreate databases (nuclear option)
+- Drop databases only
+- Recreate databases only
+- Reset development database only
 
 ## Usage
 

@@ -70,6 +70,51 @@ if ! command -v node &> /dev/null; then
     print_status "Visit: https://nodejs.org/ to install Node.js"
 fi
 
+# Check if PostgreSQL is installed
+if ! command -v psql &> /dev/null; then
+    print_error "PostgreSQL is not installed. Please install PostgreSQL first:"
+    echo ""
+    echo "For macOS (using Homebrew):"
+    echo "  brew install postgresql"
+    echo "  brew services start postgresql"
+    echo ""
+    echo "For Ubuntu/Debian:"
+    echo "  sudo apt update"
+    echo "  sudo apt install postgresql postgresql-contrib"
+    echo "  sudo systemctl start postgresql"
+    echo "  sudo systemctl enable postgresql"
+    echo ""
+    echo "For Windows:"
+    echo "  Download from https://www.postgresql.org/download/windows/"
+    echo ""
+    exit 1
+fi
+
+# Check if PostgreSQL service is running
+if ! pg_isready -q; then
+    print_warning "PostgreSQL service is not running. Starting it..."
+
+    # Try to start PostgreSQL service
+    if command -v brew &> /dev/null; then
+        # macOS with Homebrew
+        brew services start postgresql
+    elif command -v systemctl &> /dev/null; then
+        # Linux with systemd
+        sudo systemctl start postgresql
+    else
+        print_error "Could not start PostgreSQL automatically. Please start it manually."
+        exit 1
+    fi
+
+    # Wait a moment for the service to start
+    sleep 3
+
+    if ! pg_isready -q; then
+        print_error "PostgreSQL service failed to start. Please start it manually."
+        exit 1
+    fi
+fi
+
 print_success "System requirements check completed."
 
 # Install dependencies
@@ -84,17 +129,34 @@ else
 fi
 
 # Set up database
-print_status "Setting up database..."
+print_status "Setting up PostgreSQL databases..."
 
-# Create database
-print_status "Creating database..."
-rails db:create
-
-if [ $? -eq 0 ]; then
-    print_success "Database created successfully."
+# Create development database if it doesn't exist
+print_status "Creating development database 'foundit_development' if it doesn't exist..."
+if psql -lqt | cut -d \| -f 1 | grep -qw foundit_development; then
+    print_success "Database 'foundit_development' already exists"
 else
-    print_error "Failed to create database."
-    exit 1
+    createdb foundit_development
+    if [ $? -eq 0 ]; then
+        print_success "Database 'foundit_development' created successfully"
+    else
+        print_error "Failed to create development database. You may need to run: createdb foundit_development"
+        exit 1
+    fi
+fi
+
+# Create test database if it doesn't exist
+print_status "Creating test database 'foundit_test' if it doesn't exist..."
+if psql -lqt | cut -d \| -f 1 | grep -qw foundit_test; then
+    print_success "Database 'foundit_test' already exists"
+else
+    createdb foundit_test
+    if [ $? -eq 0 ]; then
+        print_success "Database 'foundit_test' created successfully"
+    else
+        print_error "Failed to create test database. You may need to run: createdb foundit_test"
+        exit 1
+    fi
 fi
 
 # Run migrations
@@ -166,7 +228,7 @@ if [ ! -f ".env" ]; then
 RAILS_ENV=development
 
 # Database Configuration
-DATABASE_URL=sqlite3:db/development.sqlite3
+DATABASE_URL=postgresql://postgres@localhost:5432/foundit_development
 
 # Security
 SECRET_KEY_BASE=$(rails secret)
