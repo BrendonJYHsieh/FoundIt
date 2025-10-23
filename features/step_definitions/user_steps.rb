@@ -45,7 +45,9 @@ end
 Given("I am logged in as {string}") do |email|
   @user = User.find_by(email: email) || User.create!(
     email: email,
-    uni: email.split('@').first + "1234",
+    uni: "jd1234",
+    first_name: "John",
+    last_name: "Doe",
     password: "password123",
     password_confirmation: "password123",
     verified: true

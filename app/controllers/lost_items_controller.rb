@@ -3,10 +3,16 @@ class LostItemsController < ApplicationController
   before_action :set_lost_item, only: [:show, :edit, :update, :destroy, :mark_found, :close]
   
   def index
-    # Show only the logged-in user's lost items
-    @lost_items = current_user.lost_items.includes(:matches).order(lost_date: :desc)
-    @lost_items = @lost_items.by_type(params[:item_type]) if params[:item_type].present?
-    @lost_items = @lost_items.by_location(params[:location]) if params[:location].present?
+    if current_user
+      # Show only the logged-in user's lost items
+      @lost_items = current_user.lost_items.includes(:matches).order(lost_date: :desc)
+      @lost_items = @lost_items.by_type(params[:item_type]) if params[:item_type].present?
+      @lost_items = @lost_items.by_location(params[:location]) if params[:location].present?
+    else
+      # Redirect to login if no user is logged in
+      flash[:alert] = "Please log in to view your lost items."
+      redirect_to login_path
+    end
   end
 
   def all
