@@ -64,19 +64,7 @@
 
   <body>
     <div class="container">
-      <h1>🔍 <%= @viewing_all ? 'All Lost Items' : 'My Lost Items' %></h1>
-      
-      <% unless @viewing_all %>
-        <div style="text-align: center; margin-bottom: 30px;">
-          <%= link_to "View All Lost Items", all_lost_items_path,
-                style: "display:inline-block; background:#2E5BBA; color:white; padding:12px 24px; border-radius:25px; text-decoration:none; font-weight:bold; transition:all 0.3s ease;" %>
-        </div>
-      <% else %>
-        <div style="text-align: center; margin-bottom: 30px;">
-          <%= link_to "View My Lost Items", lost_items_path,
-                style: "display:inline-block; background:#6c757d; color:white; padding:12px 24px; border-radius:25px; text-decoration:none; font-weight:bold; transition:all 0.3s ease;" %>
-        </div>
-      <% end %>
+      <h1>🔍 My Lost Items</h1>
 
       <% if @lost_items.any? %>
         <div class="lost-items-list">
@@ -86,9 +74,6 @@
               <p><strong>Description:</strong> <%= truncate(item.description, length: 80) %></p>
               <p><strong>Location:</strong> <%= item.location %></p>
               <p><strong>Date Lost:</strong> <%= item.lost_date.strftime("%b %d, %Y") %></p>
-              <% if @viewing_all %>
-                <p><strong>Posted by:</strong> <%= item.user.email %></p>
-              <% end %>
               <span class="item-status status-<%= item.status %>">
                 <%= item.status.capitalize %>
               </span>
@@ -108,7 +93,9 @@
           margin: 0 auto 40px auto;
         ">
           <p style="font-size: 1.2rem; margin-bottom: 10px;">🔍 No lost items have been posted yet.</p>
-          <p style="font-size: 0.95rem; margin-bottom: 20px;">No lost items to display at the moment.</p>
+          <p style="font-size: 0.95rem; margin-bottom: 20px;">Be the first to report a lost item!</p>
+          <%= link_to "Post a Lost Item", new_lost_item_path,
+                style: "display:inline-block; background:#2E5BBA; color:white; padding:10px 22px; border-radius:25px; text-decoration:none; font-weight:bold; transition:all 0.3s ease;" %>
         </div>
       <% end %>
 

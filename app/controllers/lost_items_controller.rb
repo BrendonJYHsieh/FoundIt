@@ -90,6 +90,10 @@ class LostItemsController < ApplicationController
     redirect_to @lost_item, notice: 'Lost item post closed!'
   end
 
+  def feed
+    @lost_items = LostItem.active.includes(:user).order(created_at: :desc)
+  end
+
   private
 
   def set_lost_item
