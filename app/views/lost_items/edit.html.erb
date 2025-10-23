@@ -1,2 +1,154 @@
-<h1>LostItems#edit</h1>
-<p>Find me in app/views/lost_items/edit.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Lost Item - FoundIt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #2E5BBA;
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      p.subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      form {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #2E5BBA;
+      }
+
+      input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 1rem;
+        transition: border 0.2s ease;
+      }
+
+      input:focus, textarea:focus, select:focus {
+        border-color: #2E5BBA;
+        box-shadow: 0 0 0 2px rgba(46, 91, 186, 0.1);
+        outline: none;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #2E5BBA;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        background: #1E4A9A;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(46, 91, 186, 0.3);
+      }
+
+      .back-link {
+        text-align: center;
+        margin-top: 25px;
+      }
+
+      .back-link a {
+        color: #2E5BBA;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .back-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>🔍 Edit Lost Item</h1>
+      <p class="subtitle">Update the details of your lost item.</p>
+
+      <%= form_with model: @lost_item, url: lost_item_path(@lost_item), method: :patch, local: true do |f| %>
+        <div>
+          <%= f.label :item_type, "Item Type" %>
+          <%= f.select :item_type,
+            options_for_select(%w[phone laptop textbook id keys wallet backpack other], @lost_item.item_type),
+            { include_blank: "Select type" },
+            required: true %>
+        </div>
+
+        <div>
+            <%= f.label :description, "Description", for: "lost_item_description" %>
+            <%= f.text_area :description,
+                id: "lost_item_description",
+                rows: 4,
+                minlength: 10,
+                maxlength: 500,
+                placeholder: "e.g., Black iPhone with a clear case and 'Columbia' sticker on the back",
+                required: true %>
+        </div>      
+
+        <div>
+          <%= f.label :location, "Location Lost" %>
+          <%= f.text_field :location, placeholder: "e.g., Lerner Hall entrance", required: true %>
+        </div>
+
+        <div>
+          <%= f.label :lost_date, "Date Lost" %>
+          <%= f.date_field :lost_date, required: true %>
+        </div>
+
+        <div>
+          <%= f.label :photos, "Photo URLs (optional)" %>
+          <%= f.text_field :photos, placeholder: "Paste image URLs separated by commas" %>
+        </div>
+
+        <div style="text-align:center;">
+          <%= f.submit "Update Lost Item", class: "btn" %>
+        </div>
+      <% end %>
+
+      <div class="back-link">
+        <%= link_to "← Back to Lost Item", lost_item_path(@lost_item) %>
+      </div>
+    </div>
+  </body>
+</html>
