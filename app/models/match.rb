@@ -63,13 +63,14 @@ class Match < ApplicationRecord
   belongs_to :claimer, class_name: "User", optional: true
 
   validates :similarity_score, presence: true, numericality: { in: 0.0..1.0 }
-  validates :status, presence: true, inclusion: { in: %w[matched claimed approved rejected] }
+  validates :status, presence: true, inclusion: { in: %w[pending matched claimed approved rejected] }
 
   before_validation :set_defaults
 
   # -------------------------------
   # Scopes
   # -------------------------------
+  scope :pending,  -> { where(status: 'pending') }
   scope :matched,  -> { where(status: 'matched') }
   scope :claimed,  -> { where(status: 'claimed') }
   scope :approved, -> { where(status: 'approved') }
@@ -110,7 +111,7 @@ class Match < ApplicationRecord
   private
 
   def set_defaults
-    self.status ||= 'matched'
+    self.status ||= 'pending'
     self.verification_answers ||= '{}'
   end
 end
