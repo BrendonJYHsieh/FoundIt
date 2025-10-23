@@ -1,2 +1,420 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile - FoundIt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 0 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #2E5BBA;
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      p.subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      .profile-header {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+        margin-bottom: 20px;
+      }
+
+      .profile-info {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 20px;
+      }
+
+      .profile-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: #2E5BBA;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .profile-photo img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .profile-details h2 {
+        color: #2E5BBA;
+        margin: 0 0 10px 0;
+        font-size: 1.8rem;
+      }
+
+      .profile-details p {
+        margin: 5px 0;
+        color: #666;
+      }
+
+      .badges {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 15px;
+      }
+
+      .badge {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      .badge.verified {
+        background: #e8f5e8;
+        color: #2e7d32;
+      }
+
+      .badge.good-samaritan {
+        background: #f3e5f5;
+        color: #7b1fa2;
+      }
+
+      .badge.trust {
+        background: #e3f2fd;
+        color: #1976d2;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .stat-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+        text-align: center;
+      }
+
+      .stat-card h3 {
+        color: #2E5BBA;
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .stat-card p {
+        color: #666;
+        margin: 0;
+        font-weight: bold;
+      }
+
+      .activity-section {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+        margin-bottom: 20px;
+      }
+
+      .activity-section h3 {
+        color: #2E5BBA;
+        margin: 0 0 20px 0;
+        font-size: 1.3rem;
+      }
+
+      .activity-item {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid #2E5BBA;
+      }
+
+      .activity-item h4 {
+        margin: 0 0 5px 0;
+        color: #333;
+      }
+
+      .activity-item p {
+        margin: 5px 0;
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+
+      .status-badge.active {
+        background: #e3f2fd;
+        color: #1976d2;
+      }
+
+      .status-badge.found {
+        background: #e8f5e8;
+        color: #2e7d32;
+      }
+
+      .status-badge.returned {
+        background: #e8f5e8;
+        color: #2e7d32;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #2E5BBA;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 5px;
+      }
+
+      .btn:hover {
+        background: #1E4A9A;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(46, 91, 186, 0.3);
+      }
+
+      .btn-secondary {
+        background: #6c757d;
+      }
+
+      .btn-secondary:hover {
+        background: #5a6268;
+      }
+
+      .completion-bar {
+        background: #e9ecef;
+        border-radius: 10px;
+        height: 20px;
+        margin: 10px 0;
+        overflow: hidden;
+      }
+
+      .completion-fill {
+        background: #2E5BBA;
+        height: 100%;
+        transition: width 0.3s ease;
+      }
+
+      .empty-state {
+        text-align: center;
+        color: #666;
+        padding: 40px 20px;
+      }
+
+      .empty-state p {
+        margin: 10px 0;
+      }
+
+      @media (max-width: 768px) {
+        .profile-info {
+          flex-direction: column;
+          text-align: center;
+        }
+        
+        .stats-grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>👤 User Profile</h1>
+      <p class="subtitle">Your FoundIt profile and activity overview</p>
+
+      <!-- Profile Header -->
+      <div class="profile-header">
+        <div class="profile-info">
+          <div class="profile-photo">
+            <% if @user.profile_photo.attached? %>
+              <%= image_tag @user.profile_photo, alt: @user.display_name %>
+            <% else %>
+              <%= @user.display_name.first.upcase %>
+            <% end %>
+          </div>
+          
+          <div class="profile-details">
+            <h2><%= @user.display_name %></h2>
+            <p><strong>Email:</strong> <%= @user.email %></p>
+            <p><strong>UNI:</strong> <%= @user.uni.upcase %></p>
+            <% if @user.phone.present? %>
+              <p><strong>Phone:</strong> <%= @user.phone %></p>
+            <% end %>
+            <p><strong>Member Since:</strong> <%= @user.member_since %></p>
+            <p><strong>Last Active:</strong> <%= @user.last_active_display %></p>
+            
+            <% if @user.bio.present? %>
+              <p><strong>About:</strong> <%= @user.bio %></p>
+            <% end %>
+            
+            <div class="badges">
+              <span class="badge trust"><%= @user.trust_level %></span>
+              <% if @user.verified? %>
+                <span class="badge verified">✓ Verified</span>
+              <% end %>
+              <% if @user.good_samaritan? %>
+                <span class="badge good-samaritan">⭐ Good Samaritan</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        
+        <div style="text-align: center;">
+          <%= link_to "Edit Profile", edit_user_path(@user), class: "btn" %>
+          <%= link_to "Back to Dashboard", dashboard_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
+
+      <!-- Statistics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3><%= @user.total_items_posted %></h3>
+          <p>Total Items Posted</p>
+        </div>
+        
+        <div class="stat-card">
+          <h3><%= @user.successful_matches %></h3>
+          <p>Successful Matches</p>
+        </div>
+        
+        <div class="stat-card">
+          <h3><%= @user.items_returned %></h3>
+          <p>Items Returned</p>
+        </div>
+        
+        <div class="stat-card">
+          <h3><%= @user.reputation_score %></h3>
+          <p>Reputation Score</p>
+        </div>
+      </div>
+
+      <!-- Profile Completion -->
+      <div class="activity-section">
+        <h3>📊 Profile Completion</h3>
+        <div class="completion-bar">
+          <div class="completion-fill" style="width: <%= @user.profile_completion_percentage %>%"></div>
+        </div>
+        <p><strong><%= @user.profile_completion_percentage %>% Complete</strong></p>
+        
+        <% unless @user.profile_complete? %>
+          <p style="color: #666; margin-top: 15px;">Complete your profile by adding:</p>
+          <ul style="color: #666;">
+            <% unless @user.first_name.present? %><li>First name</li><% end %>
+            <% unless @user.last_name.present? %><li>Last name</li><% end %>
+            <% unless @user.bio.present? %><li>Bio/About me</li><% end %>
+            <% unless @user.phone.present? %><li>Phone number</li><% end %>
+            <% unless @user.profile_photo.attached? %><li>Profile photo</li><% end %>
+          </ul>
+        <% end %>
+      </div>
+
+      <!-- Recent Activity -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <!-- Recent Lost Items -->
+        <div class="activity-section">
+          <h3>🔍 Recent Lost Items</h3>
+          <% if @recent_lost_items.any? %>
+            <% @recent_lost_items.each do |item| %>
+              <div class="activity-item">
+                <h4><%= item.item_type.titleize %></h4>
+                <p><%= truncate(item.description, length: 60) %></p>
+                <p><strong>Lost:</strong> <%= item.lost_date.strftime("%b %d, %Y") %></p>
+                <p><strong>Location:</strong> <%= item.location %></p>
+                <span class="status-badge <%= item.status %>"><%= item.status.titleize %></span>
+              </div>
+            <% end %>
+            <%= link_to "View All Lost Items", lost_items_path, class: "btn btn-secondary" %>
+          <% else %>
+            <div class="empty-state">
+              <p>No lost items yet</p>
+              <%= link_to "Post a Lost Item", new_lost_item_path, class: "btn" %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- Recent Found Items -->
+        <div class="activity-section">
+          <h3>🎯 Recent Found Items</h3>
+          <% if @recent_found_items.any? %>
+            <% @recent_found_items.each do |item| %>
+              <div class="activity-item">
+                <h4><%= item.item_type.titleize %></h4>
+                <p><%= truncate(item.description, length: 60) %></p>
+                <p><strong>Found:</strong> <%= item.found_date.strftime("%b %d, %Y") %></p>
+                <p><strong>Location:</strong> <%= item.location %></p>
+                <span class="status-badge <%= item.status %>"><%= item.status.titleize %></span>
+              </div>
+            <% end %>
+            <%= link_to "View All Found Items", found_items_path, class: "btn btn-secondary" %>
+          <% else %>
+            <div class="empty-state">
+              <p>No found items yet</p>
+              <%= link_to "Post a Found Item", new_found_item_path, class: "btn" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Recent Matches -->
+      <% if @recent_matches.any? %>
+        <div class="activity-section">
+          <h3>🤝 Recent Matches</h3>
+          <% @recent_matches.each do |match| %>
+            <div class="activity-item">
+              <h4><%= match.lost_item&.item_type || 'Unknown' %> Match</h4>
+              <p><strong>Similarity:</strong> <%= (match.similarity_score * 100).round %>%</p>
+              <p><strong>Date:</strong> <%= match.created_at.strftime("%b %d, %Y") %></p>
+              <span class="status-badge <%= match.status %>"><%= match.status.titleize %></span>
+            </div>
+          <% end %>
+          <%= link_to "View All Matches", matches_path, class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </body>
+</html>

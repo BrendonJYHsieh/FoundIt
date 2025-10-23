@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy"
   
   # User profile routes
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update, :create]
   
   # Lost items routes
   resources :lost_items do
