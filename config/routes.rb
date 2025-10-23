@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :lost_items do
     collection do
       get :all
+      get :feed
     end
     member do
       patch :mark_found

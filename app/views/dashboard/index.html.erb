@@ -49,6 +49,21 @@
       .nav-links a:hover {
         background: rgba(255, 255, 255, 0.3);
       }
+      .nav-link-button {
+        color: white;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        transition: background 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: inherit;
+        font-family: inherit;
+      }
+      .nav-link-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
       .main-content {
         padding: 40px 0;
       }
@@ -224,10 +239,11 @@
           <div class="nav-links">
             <%= link_to "Post Lost Item", new_lost_item_path %>
             <%= link_to "Post Found Item", new_found_item_path %>
+            <%= link_to "Lost Items Feed", feed_lost_items_path %>
             <%= link_to "Found Items Feed", feed_found_items_path %>
             <%= link_to "My Profile", user_path(@user) %>
             <%= form_with url: logout_path, method: :delete, local: true, data: { turbo: false }, style: "display: inline;" do |form| %>
-              <%= form.submit "Logout", style: "background: none; border: none; color: white; padding: 8px 16px; border-radius: 20px; background: rgba(255, 255, 255, 0.2); transition: background 0.3s ease; cursor: pointer;" %>
+              <%= form.submit "Logout", class: "nav-link-button" %>
             <% end %>
           </div>
         </div>
@@ -363,11 +379,6 @@
 
         </div>
 
-        <div class="quick-actions">
-          <%= link_to "Post Lost Item", new_lost_item_path, class: "btn" %>
-          <%= link_to "Post Found Item", new_found_item_path, class: "btn btn-secondary" %>
-          <%= link_to "Found Items Feed", feed_found_items_path, class: "btn btn-secondary" %>
-        </div>
       </div>
     </div>
   </body>
