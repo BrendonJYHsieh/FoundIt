@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe FoundItemsController, type: :controller do
-  let(:user) { User.create!(email: "te1122@columbia.edu", password: "password", uni: "te1122") }
-  let(:other_user) { User.create!(email: "op2322@columbia.edu", password: "password", uni: "op2322") }
+  let(:user) { User.create!(email: "te1122@columbia.edu", password: "password", uni: "te1122", first_name: "Test", last_name: "User") }
+  let(:other_user) { User.create!(email: "op2322@columbia.edu", password: "password", uni: "op2322", first_name: "Other", last_name: "User") }
 
   let!(:found_item) do
     user.found_items.create!(
