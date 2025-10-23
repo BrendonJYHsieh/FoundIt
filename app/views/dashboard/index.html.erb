@@ -71,6 +71,10 @@
         font-size: 1.3rem;
         margin-bottom: 20px;
       }
+      h3 a:hover {
+        text-decoration: underline;
+        color: #1E4A9A;
+      }
       .item-list {
         list-style: none;
         padding: 0;
@@ -79,7 +83,6 @@
       .item-list li {
         padding: 10px 0;
         border-bottom: 1px solid #f0f0f0;
-        display: flex;
         justify-content: space-between;
         align-items: center;
       }
@@ -90,6 +93,28 @@
         font-weight: bold;
         color: #2E5BBA;
       }
+      .found-item-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: inherit;
+        background: white;
+        transition: all 0.25s ease;
+        border: 1px solid #f0f0f0;
+      }
+      .found-item-link:hover {
+        background: #f0f5ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(46, 91, 186, 0.15);
+        border-color: #c5d8ff;
+      }
+      .item-meta {
+        font-size: 0.9rem;
+        color: #666;
+      }
       .item-status {
         padding: 4px 8px;
         border-radius: 12px;
@@ -99,6 +124,7 @@
       .status-active { background: #e8f5e8; color: #2e7d32; }
       .status-found { background: #fff3e0; color: #f57c00; }
       .status-closed { background: #ffebee; color: #c62828; }
+      .status-returned { background: #fff7d1;; color: #8c6d00; }
       .btn {
         display: inline-block;
         padding: 12px 24px;
@@ -169,6 +195,20 @@
         font-size: 1.1rem;
         opacity: 0.9;
       }
+      .view-all-link {
+        display: inline-block;
+        margin-top: 6px;
+        font-size: 0.9rem;
+        color: #2E5BBA;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.2s ease, text-decoration 0.2s ease;
+      }
+      .view-all-link:hover {
+        color: #1E4A9A;
+        text-decoration: underline;
+      }
+
     </style>
   </head>
   <body>
@@ -249,26 +289,30 @@
           </div>
 
           <div class="card">
-            <h3>🔍 Recent Found Items</h3>
+            <h3>🔍 Recent Active Found Items</h3>
+            <%= link_to "View All →", found_items_path, class: "view-all-link", data: { turbo: false }%>
             <% if @found_items.any? %>
               <ul class="item-list">
-                <% @found_items.each do |item| %>
-                  <li>
+              <% @found_items.each do |item| %>
+                <li class="found-item-row">
+                  <%= link_to found_item_path(item), class: "found-item-link" do %>
                     <div>
                       <div class="item-type"><%= item.item_type.capitalize %></div>
-                      <div style="font-size: 0.9rem; color: #666;">
+                      <div class="item-meta">
                         Found <%= time_ago_in_words(item.found_date) %> ago
                       </div>
                     </div>
                     <span class="item-status status-<%= item.status %>">
                       <%= item.status.capitalize %>
                     </span>
-                  </li>
-                <% end %>
+                  <% end %>
+                </li>
+              <% end %>              
+              
               </ul>
             <% else %>
               <p style="color: #666; text-align: center; padding: 20px;">
-                No found items yet. <%= link_to "Post your first found item", new_found_item_path %>!
+                No active found items yet. <%= link_to "Post a found item here", new_found_item_path %>!
               </p>
             <% end %>
           </div>

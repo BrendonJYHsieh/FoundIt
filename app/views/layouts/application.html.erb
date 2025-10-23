@@ -23,6 +23,15 @@
   </head>
 
   <body>
+    <% if notice %>
+      <div style="background:#e6ffe6; color:#2e7d32; padding:10px; text-align:center; border-radius:8px; margin:10px;">
+        <%= notice %>
+      </div>
+    <% elsif alert %>
+      <div style="background:#ffeaea; color:#b71c1c; padding:10px; text-align:center; border-radius:8px; margin:10px;">
+        <%= alert %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

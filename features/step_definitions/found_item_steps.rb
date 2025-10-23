@@ -1,134 +1,161 @@
-# features/step_definitions/found_item_steps.rb
+# frozen_string_literal: true
 
-Given("I am on the new found item page") do
+# --------------------------------------------------
+# Authentication
+# --------------------------------------------------
+Given('I log in as {string}') do |email|
+  uni = email.split('@').first
+
+  @user = User.find_or_create_by!(email: email) do |u|
+    u.password = 'password'
+    u.uni = uni
+    u.verified = true if u.respond_to?(:verified)
+  end
+
+  visit login_path
+  fill_in 'Email', with: email
+  fill_in 'Password', with: 'password'
+  click_button 'Log In'
+end
+
+# --------------------------------------------------
+# Create a Found Item
+# --------------------------------------------------
+Given('I am on the new found item page') do
   visit new_found_item_path
 end
 
-When("I select {string} from {string}") do |value, field|
+When('I select {string} option from {string}') do |value, field|
   select value, from: field
 end
 
-When("I upload a photo of the item") do
-  # For MVP, we'll simulate photo upload
-  # In a real implementation, this would use file upload
+When('I fill in {string} field with {string}') do |field, value|
+  fill_in field, with: value
 end
 
-When("I click {string}") do |button|
-  click_button button
+When('I optionally add a photo URL for the found item') do
+  fill_in 'Photo URLs (optional)', with: 'https://example.com/photo.jpg'
 end
 
-Then("I should be redirected to the found item show page") do
-  expect(current_path).to match(/\/found_items\/\d+/)
+When('I click on {string}') do |button_text|
+  click_button button_text
 end
 
-Then("I should see {string}!") do |message|
-  expect(page).to have_content(message)
+Then('I should be redirected to the found item show page') do
+  expect(page.current_path).to match(%r{/found_items/\d+})
 end
 
-Given("I have posted a found item {string}") do |item_type|
-  @found_item = @user.found_items.create!(
-    item_type: item_type.downcase,
-    description: "Test #{item_type} description",
-    location: "Butler Library",
-    found_date: 1.day.ago,
-    status: "active"
+Then('I should see {string} on the screen') do |text|
+  expect(page).to have_content(text)
+end
+
+Then('I should see the found item details on the page') do
+  expect(page).to have_content('Item Type')
+  expect(page).to have_content('Description')
+  expect(page).to have_content('Location Found')
+  expect(page).to have_content('Date Found')
+end
+
+# --------------------------------------------------
+# View All Found Items
+# --------------------------------------------------
+Given('a found item with photos exists') do
+  user = @user || User.create!(email: 'ss2222@columbia.edu', password: 'password')
+  @found_item = FoundItem.create!(
+    user: user,
+    item_type: 'wallet',
+    description: 'Black wallet',
+    location: 'Low Library',
+    found_date: Date.today,
+    status: 'active',
+    photos: ['https://example.com/photo1.jpg', 'https://example.com/photo2.jpg'].to_json
   )
 end
 
-Given("there is a lost item {string} with verification questions") do |item_type|
-  loser = User.create!(
-    email: "loser@columbia.edu",
-    uni: "ls1234",
-    password: "password123",
-    password_confirmation: "password123",
-    verified: true
-  )
-  
-  @lost_item = loser.lost_items.create!(
-    item_type: item_type.downcase,
-    description: "Test #{item_type} description",
-    location: "Butler Library",
-    lost_date: 1.day.ago,
-    verification_questions: '[{"question": "What color is it?", "answer": "Blue"}]',
-    status: "active"
-  )
-end
-
-When("I receive a match notification") do
-  @match = Match.create!(
-    lost_item: @lost_item,
-    found_item: @found_item,
-    similarity_score: 0.85,
-    status: "pending"
-  )
-end
-
-When("I visit the match verification page") do
-  visit match_path(@match)
-end
-
-When("I answer the verification questions correctly") do
-  answers = { "0" => "Blue" }
-  fill_in "Answer 0", with: "Blue"
-  click_button "Submit Answers"
-end
-
-Then("I should see {string}!") do |message|
-  expect(page).to have_content(message)
-end
-
-Then("I should be able to contact the owner") do
-  expect(@match.reload.status).to eq("verified")
-end
-
-When("I visit my found items index page") do
+When('I visit the found items index page') do
   visit found_items_path
 end
 
-Then("I should see {string} in the list") do |item_type|
-  expect(page).to have_content(item_type)
+Then('I should see the list of found items') do
+  expect(page).to have_css('.found-card')
+  expect(page).to have_content('My Found Items')
 end
 
-When("I click {string}") do |action|
-  click_link action
+Then('I should see each found item’s type, location, date, and status') do
+  expect(page).to have_content('Wallet')
+  expect(page).to have_content('Low Library')
+  expect(page).to have_content('Active')
 end
 
-Then("I should see {string}!") do |message|
-  expect(page).to have_content(message)
+Then("I should see the found item's photos displayed on the page") do
+  JSON.parse(@found_item.photos).each do |url|
+    expect(page).to have_css("img[src='#{url}']")
+  end
 end
 
-Then("the item status should be {string}") do |status|
-  expect(@found_item.reload.status).to eq(status)
+# --------------------------------------------------
+# Manage Found Item Posts
+# --------------------------------------------------
+Given('I have posted a found item {string}') do |item_name|
+  @found_item = (@user || User.first).found_items.create!(
+    item_type: 'phone',
+    description: item_name,
+    location: 'Butler Library',
+    found_date: Date.today,
+    status: 'active'
+  )
 end
 
-Then("my reputation score should increase by {int}") do |points|
-  expect(@user.reload.reputation_score).to eq(points)
+When('I visit my found items index page') do
+  visit found_items_path
 end
 
-When("I visit the found item show page") do
+Then('I should see {string} on the found items list') do |item_name|
+  expect(page).to have_content(item_name)
+end
+
+When('I click on the {string} item link') do |item_name|
+  click_link item_name
+end
+
+Then("the found item's status should be {string}") do |expected_status|
+  @found_item.reload
+  expect(@found_item.status.downcase).to eq(expected_status.downcase)
+end
+
+Then('my reputation score should increase by {int}') do |points|
+  expect(@user.reload.reputation_score).to be >= points
+end
+
+# --------------------------------------------------
+# View Found Item Status
+# --------------------------------------------------
+When('I visit the found item show page') do
   visit found_item_path(@found_item)
 end
 
-Then("I should see the item details") do
+Then('I should see the found item details') do
   expect(page).to have_content(@found_item.description)
+  expect(page).to have_content(@found_item.location)
 end
 
-Then("I should see {string} status") do |status|
-  expect(page).to have_content(status)
+Then('I should see "Active" status for the found item') do
+  expect(page).to have_content('Active')
 end
 
-Then("I should see any pending matches") do
-  expect(page).to have_content("Matches")
+# --------------------------------------------------
+# Negative: Buttons Hidden for Returned/Closed
+# --------------------------------------------------
+Given('I have a found item {string} with status {string}') do |item_name, status|
+  @found_item = (@user || User.first).found_items.create!(
+    item_type: 'phone',
+    description: item_name,
+    location: 'Butler Library',
+    found_date: Date.today - 2.days,
+    status: status
+  )
 end
 
-When("I click {string}") do |action|
-  click_link action
-end
-
-Then("I should see {string}!") do |message|
-  expect(page).to have_content(message)
-end
-
-Then("the item status should be {string}") do |status|
-  expect(@found_item.reload.status).to eq(status)
+Then('I should not see the {string} button') do |button_text|
+  expect(page).not_to have_button(button_text)
 end

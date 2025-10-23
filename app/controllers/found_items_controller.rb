@@ -1,22 +1,71 @@
 class FoundItemsController < ApplicationController
-  def index
-  end
-
-  def show
-  end
+  before_action :require_login, except: [:index, :show]
 
   def new
+    @found_item = FoundItem.new(found_date: Date.today)
   end
 
   def create
+    @found_item = current_user.found_items.new(found_item_params)
+
+    if @found_item.save
+      redirect_to @found_item, notice: "Your found item has been posted."
+    else
+      flash.now[:alert] = "Please fix the errors below."
+      render :new, status: :unprocessable_entity
+    end
   end
 
-  def edit
+  def index
+    # only show the logged-in user's found items for now
+    @found_items = current_user.found_items.order(found_date: :desc)
+  end   
+
+  def show
+    @found_item = FoundItem.find(params[:id])
   end
 
-  def update
+  def mark_returned
+    @found_item = FoundItem.find(params[:id])
+
+    if @found_item.user == current_user
+      @found_item.mark_as_returned!
+      flash[:notice] = "🎉 Item marked as returned! Reputation +5."
+    else
+      flash[:alert] = "Could not mark as returned."
+    end
+
+    redirect_to @found_item
   end
 
-  def destroy
+  def close
+    @found_item = FoundItem.find(params[:id])
+  
+    if @found_item.user == current_user
+      @found_item.close!
+      flash[:notice] = "📦 Listing closed successfully."
+    else
+      flash[:alert] = "Could not close this listing."
+    end
+  
+    redirect_to @found_item
   end
+  
+
+  private
+
+  def found_item_params
+    data = params.require(:found_item).permit(
+      :item_type, :description, :location, :found_date, :status, :photos
+    )
+    # convert comma-separated photo URLs into JSON array for model storage
+    if data[:photos].present?
+      urls = data[:photos].split(/[\s,]+/).map(&:strip).reject(&:blank?)
+      data[:photos] = urls.to_json
+    else
+      data[:photos] = '[]'
+    end
+  
+    data
+  end  
 end

@@ -37,6 +37,7 @@ class FoundItem < ApplicationRecord
   
   def close!
     update!(status: 'closed')
+    matches.pending.update_all(status: 'cancelled')
   end
   
   private
