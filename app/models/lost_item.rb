@@ -10,7 +10,6 @@ class LostItem < ApplicationRecord
   validates :status, presence: true, inclusion: { in: %w[active found closed] }
   
   before_validation :set_defaults
-  validates :verification_questions, presence: true
   after_create :find_potential_matches
   
   scope :active, -> { where(status: 'active') }
@@ -51,7 +50,6 @@ class LostItem < ApplicationRecord
   
   def set_defaults
     self.status ||= 'active'
-    self.verification_questions ||= '[]'
     self.photos ||= '[]'
   end
 end

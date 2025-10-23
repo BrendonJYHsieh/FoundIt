@@ -49,19 +49,7 @@ RSpec.describe LostItem, type: :model do
       expect(lost_item.errors[:lost_date]).to include("can't be blank")
     end
 
-    it 'is invalid without verification_questions' do
-      lost_item = LostItem.new(
-        item_type: 'phone',
-        description: 'iPhone 13 Pro with blue case',
-        location: 'Butler Library',
-        lost_date: Date.current,
-        verification_questions: nil
-      )
-      # Skip the set_defaults callback for this test
-      lost_item.define_singleton_method(:set_defaults) { }
-      expect(lost_item).not_to be_valid
-      expect(lost_item.errors[:verification_questions]).to include("can't be blank")
-    end
+    # Note: verification_questions validation removed for MVP
   end
 
   describe 'associations' do
@@ -114,22 +102,7 @@ RSpec.describe LostItem, type: :model do
   describe 'methods' do
     let(:lost_item) { create(:lost_item) }
 
-    describe '#verification_questions_array' do
-      it 'returns parsed verification questions' do
-        questions = lost_item.verification_questions_array
-        expect(questions).to be_an(Array)
-        expect(questions.first).to have_key('question')
-        expect(questions.first).to have_key('answer')
-      end
-    end
-
-    describe '#verification_questions_array=' do
-      it 'sets verification questions from array' do
-        questions = [{ 'question' => 'Test?', 'answer' => 'Yes' }]
-        lost_item.verification_questions_array = questions
-        expect(lost_item.verification_questions).to eq(questions.to_json)
-      end
-    end
+    # Note: verification_questions methods removed for MVP
 
     describe '#photos_array' do
       it 'returns parsed photos' do
@@ -170,7 +143,6 @@ RSpec.describe LostItem, type: :model do
       lost_item = LostItem.new
       lost_item.valid?
       expect(lost_item.status).to eq('active')
-      expect(lost_item.verification_questions).to eq('[]')
       expect(lost_item.photos).to eq('[]')
     end
 

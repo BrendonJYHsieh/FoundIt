@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   
   # Lost items routes
   resources :lost_items do
+    collection do
+      get :all
+    end
     member do
       patch :mark_found
       patch :close

@@ -265,6 +265,7 @@
         <div class="dashboard-grid">
           <div class="card">
             <h3>📱 Recent Lost Items</h3>
+            <%= link_to "View All →", lost_items_path, class: "view-all-link", data: { turbo: false }%>
             <% if @lost_items.any? %>
               <ul class="item-list">
                 <% @lost_items.each do |item| %>
