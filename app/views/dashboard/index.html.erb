@@ -125,6 +125,9 @@
       .status-found { background: #fff3e0; color: #f57c00; }
       .status-closed { background: #ffebee; color: #c62828; }
       .status-returned { background: #fff7d1;; color: #8c6d00; }
+      .status-matched { background: #d0f0fd; color: #0277bd; }
+      .status-approved { background: #e8f5e8; color: #2e7d32; }
+      .status-rejected { background: #ffebee; color: #c62828; }
       .btn {
         display: inline-block;
         padding: 12px 24px;
@@ -221,6 +224,7 @@
           <div class="nav-links">
             <%= link_to "Post Lost Item", new_lost_item_path %>
             <%= link_to "Post Found Item", new_found_item_path %>
+            <%= link_to "Found Items Feed", feed_found_items_path %>
             <%= link_to "My Profile", user_path(@user) %>
             <%= form_with url: logout_path, method: :delete, local: true, data: { turbo: false }, style: "display: inline;" do |form| %>
               <%= form.submit "Logout", style: "background: none; border: none; color: white; padding: 8px 16px; border-radius: 20px; background: rgba(255, 255, 255, 0.2); transition: background 0.3s ease; cursor: pointer;" %>
@@ -318,34 +322,50 @@
           </div>
 
           <div class="card">
-            <h3>🎯 Pending Matches</h3>
-            <% if @pending_matches.any? %>
-              <ul class="item-list">
-                <% @pending_matches.each do |match| %>
-                  <li>
-                    <div>
-                      <div class="item-type"><%= match.lost_item.item_type.capitalize %></div>
-                      <div style="font-size: 0.9rem; color: #666;">
-                        <%= (match.similarity_score * 100).round %>% match
-                      </div>
-                    </div>
-                    <span class="item-status status-active">
-                      Pending
-                    </span>
-                  </li>
+  <h3>🎯 Pending Matches</h3>
+<%= link_to "View All →", matches_path, class: "view-all-link", data: { turbo: false } %>
+  <% if @pending_matches.any? %>
+    <ul class="item-list">
+      <% @pending_matches.each do |match| %>
+        <li>
+          <%= link_to match_path(match), class: "found-item-link", data: { turbo: false } do %>
+            <div>
+              <div class="item-type">
+                <%= match.lost_item&.item_type&.capitalize || match.found_item&.item_type&.capitalize || "Item" %>
+              </div>
+              <div class="item-meta">
+                <% if match.lost_item.present? %>
+                  Lost: <%= match.lost_item.description.truncate(50) %><br>
                 <% end %>
-              </ul>
-            <% else %>
-              <p style="color: #666; text-align: center; padding: 20px;">
-                No pending matches. Keep posting items to find matches!
-              </p>
-            <% end %>
-          </div>
+                <% if match.found_item.present? %>
+                  Found: <%= match.found_item.description.truncate(50) %><br>
+                <% end %>
+                <span style="color: #666;">
+                  Match Score: <%= (match.similarity_score * 100).round %>%
+                </span>
+              </div>
+            </div>
+            <span class="item-status status-matched">
+              Matched
+            </span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p style="color: #666; text-align: center; padding: 20px;">
+      No pending matches yet. Keep posting items to find matches!
+    </p>
+  <% end %>
+</div>
+
+
         </div>
 
         <div class="quick-actions">
           <%= link_to "Post Lost Item", new_lost_item_path, class: "btn" %>
           <%= link_to "Post Found Item", new_found_item_path, class: "btn btn-secondary" %>
+          <%= link_to "Found Items Feed", feed_found_items_path, class: "btn btn-secondary" %>
         </div>
       </div>
     </div>

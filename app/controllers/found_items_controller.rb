@@ -50,6 +50,29 @@ class FoundItemsController < ApplicationController
   
     redirect_to @found_item
   end
+
+  def feed
+    @found_items = FoundItem.active.includes(:user).order(created_at: :desc)
+  end 
+
+  def claim
+    @found_item = FoundItem.find(params[:id])
+  
+    if @found_item.user != current_user && @found_item.status == 'active'
+      match = Match.create!(
+        lost_item: nil,
+        found_item: @found_item,
+        claimer: current_user,
+        similarity_score: 1.0,
+        status: 'matched'
+      )
+      flash[:notice] = "✅ Claim request sent to the poster!"
+    else
+      flash[:alert] = "You cannot claim this item."
+    end
+  
+    redirect_to feed_found_items_path
+  end  
   
 
   private

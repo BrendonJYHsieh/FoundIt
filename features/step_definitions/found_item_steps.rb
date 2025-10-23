@@ -159,3 +159,90 @@ end
 Then('I should not see the {string} button') do |button_text|
   expect(page).not_to have_button(button_text)
 end
+
+# --------------------------------------------------
+# Public Feed Page for All Found Items
+# --------------------------------------------------
+
+Given('multiple users have posted found items') do
+  @user1 = User.create!(email: 'ab1234@columbia.edu', password: 'password', uni: 'ab1234')
+  @user2 = User.create!(email: 'bc5678@columbia.edu', password: 'password', uni: 'bc5678')
+
+  @item1 = @user1.found_items.create!(
+    item_type: 'phone',
+    description: 'Black iPhone 14 found near Hamilton Hall',
+    location: 'Hamilton Hall',
+    found_date: Date.today,
+    status: 'active'
+  )
+
+  @item2 = @user2.found_items.create!(
+    item_type: 'laptop',
+    description: 'Silver MacBook left in Butler Library',
+    location: 'Butler Library',
+    found_date: Date.today - 1.day,
+    status: 'active'
+  )
+end
+
+When('I visit the public found items feed page') do
+  visit feed_found_items_path
+end
+
+Then('I should see found items from multiple users') do
+  expect(page).to have_content('Black iPhone 14')
+  expect(page).to have_content('Silver MacBook')
+end
+
+Then('I should see each found item’s description, location, date, and "Posted by" email') do
+  expect(page).to have_content('Black iPhone 14')
+  expect(page).to have_content('Hamilton Hall')
+  expect(page).to have_content('ab1234@columbia.edu')
+
+  expect(page).to have_content('Silver MacBook')
+  expect(page).to have_content('Butler Library')
+  expect(page).to have_content('bc5678@columbia.edu')
+end
+
+Then('I should not see the "Claim Item" button for my own items') do
+  @user.found_items.each do |item|
+    within(:xpath, "//div[contains(.,'#{item.description}')]") do
+      expect(page).not_to have_button('Claim Item')
+    end
+  end
+end
+
+
+Given('another user has posted a found item {string}') do |desc|
+  @poster = User.create!(email: 'po1111@columbia.edu', password: 'password', uni: 'po1122')
+  @found_item = @poster.found_items.create!(
+    item_type: 'laptop',
+    description: desc,
+    location: 'Uris Hall',
+    found_date: Date.today,
+    status: 'active'
+  )
+end
+
+When('I click on "Claim Item" for {string}') do |item_name|
+  within(:css, ".feed-card[data-desc='#{item_name}']") do
+    click_button 'Claim Item'
+  end
+end
+
+Then('the item should be marked as "claimed"') do
+  @found_item.reload
+  expect(@found_item.status).to eq('claimed')
+end
+
+Then('I should not see the "Claim Item" button anymore') do
+  expect(page).not_to have_button('Claim Item')
+end
+
+Then('I should see the "Claim Item" button for items posted by others') do
+  FoundItem.where.not(user: @user).each do |item|
+    within(:css, ".feed-card[data-desc='#{item.description}']") do
+      expect(page).to have_button('Claim Item')
+    end
+  end
+end

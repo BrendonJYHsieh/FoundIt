@@ -1,2 +1,166 @@
-<h1>Matches#show</h1>
-<p>Find me in app/views/matches/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Match Details - FoundIt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f5f7ff;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      }
+
+      h1 {
+        color: #2E5BBA;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .section {
+        margin-bottom: 25px;
+      }
+
+      .section h3 {
+        color: #1E4A9A;
+        margin-bottom: 10px;
+      }
+
+      .item-card {
+        background: #f9f9ff;
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin-bottom: 15px;
+      }
+
+      .item-card strong {
+        color: #2E5BBA;
+      }
+
+      .actions {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #2E5BBA;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: bold;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover { background: #1E4A9A; }
+
+      .btn-danger {
+        background: #ff6b6b;
+      }
+
+      .btn-danger:hover {
+        background: #e53935;
+      }
+
+      .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #2E5BBA;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .back-link:hover { text-decoration: underline; }
+
+      .status {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        margin-top: 10px;
+      }
+
+      .status-matched { background: #d0f0fd; color: #0277bd; }
+      .status-approved { background: #e8f5e8; color: #2e7d32; }
+      .status-rejected { background: #ffebee; color: #c62828; }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>🎯 Match Details</h1>
+
+      <div class="section">
+        <h3>🧾 Match Info</h3>
+        <p><strong>Status:</strong>
+          <span class="status status-<%= @match.status %>">
+            <%= @match.status.capitalize %>
+          </span>
+        </p>
+        <p><strong>Match Score:</strong> <%= (@match.similarity_score * 100).round %>%</p>
+        <p><strong>Created:</strong> <%= @match.created_at.strftime("%B %d, %Y") %></p>
+      </div>
+
+      <div class="section">
+        <h3>🙋 Claim Submitted By</h3>
+        <% if @match.claimer %>
+            <p><strong>Email:</strong> <%= @match.claimer.email %></p>
+            <p><strong>Username:</strong> <%= @match.claimer.uni if @match.claimer.respond_to?(:uni) %></p>
+        <% else %>
+            <p>No claimer information available.</p>
+        <% end %>
+        </div>
+
+      <% if @match.lost_item %>
+        <div class="section">
+          <h3>💔 Lost Item</h3>
+          <div class="item-card">
+            <p><strong>Type:</strong> <%= @match.lost_item.item_type.capitalize %></p>
+            <p><strong>Description:</strong> <%= @match.lost_item.description %></p>
+            <p><strong>Owner:</strong> <%= @match.lost_item.user.email %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @match.found_item %>
+        <div class="section">
+          <h3>📦 Found Item</h3>
+          <div class="item-card">
+            <p><strong>Type:</strong> <%= @match.found_item.item_type.capitalize %></p>
+            <p><strong>Description:</strong> <%= @match.found_item.description %></p>
+            <p><strong>Posted by:</strong> <%= @match.found_item.user.email %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <% if current_user == @match.found_item.user && @match.status == 'matched' %>
+        <div class="actions">
+          <%= button_to "✅ Approve Claim", approve_match_path(@match),
+                        method: :patch, class: "btn",
+                        data: { turbo_confirm: "Approve this claim?" } %>
+          <%= button_to "❌ Reject Claim", reject_match_path(@match),
+                        method: :patch, class: "btn btn-danger",
+                        data: { turbo_confirm: "Reject this claim?" } %>
+        </div>
+      <% end %>
+
+      <%= link_to "← Back to Matches", matches_path, class: "back-link" %>
+    </div>
+  </body>
+</html>

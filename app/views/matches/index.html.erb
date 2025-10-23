@@ -1,2 +1,142 @@
-<h1>Matches#index</h1>
-<p>Find me in app/views/matches/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Matches - FoundIt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f5f7ff;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #2E5BBA;
+        margin-bottom: 30px;
+      }
+
+      .matches-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      a.match-card {
+        display: block;
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      a.match-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 18px rgba(46, 91, 186, 0.2);
+      }
+
+      .match-card h3 {
+        margin: 0 0 10px;
+        color: #2E5BBA;
+      }
+
+      .match-card p {
+        margin: 4px 0;
+        font-size: 0.95rem;
+        color: #555;
+      }
+
+      .item-status {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      .status-matched { background: #d0f0fd; color: #0277bd; }
+      .status-approved { background: #e8f5e8; color: #2e7d32; }
+      .status-rejected { background: #ffebee; color: #c62828; }
+
+      .empty-state {
+        background: white;
+        border-radius: 15px;
+        padding: 40px 30px;
+        text-align: center;
+        color: #666;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid #e0e0e0;
+        max-width: 600px;
+        margin: 0 auto 40px auto;
+      }
+
+      .back-link {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .back-link a {
+        color: #2E5BBA;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .back-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>🎯 My Matches</h1>
+
+      <% if @matches.any? %>
+        <div class="matches-list">
+          <% @matches.each do |match| %>
+            <%= link_to match_path(match), class: "match-card" do %>
+              <h3>
+                <%= match.found_item&.item_type&.capitalize || match.lost_item&.item_type&.capitalize || "Item" %>
+              </h3>
+
+              <% if match.found_item %>
+                <p><strong>Found Item:</strong> <%= truncate(match.found_item.description, length: 70) %></p>
+              <% end %>
+
+              <% if match.lost_item %>
+                <p><strong>Lost Item:</strong> <%= truncate(match.lost_item.description, length: 70) %></p>
+              <% end %>
+
+              <p><strong>Match Score:</strong> <%= (match.similarity_score * 100).round %>%</p>
+
+              <span class="item-status status-<%= match.status %>">
+                <%= match.status.capitalize %>
+              </span>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="empty-state">
+          <p style="font-size: 1.2rem; margin-bottom: 10px;">📭 No matches yet.</p>
+          <p style="font-size: 0.95rem;">Post more lost or found items to get matched!</p>
+        </div>
+      <% end %>
+
+      <div class="back-link">
+        <%= link_to "← Back to Dashboard", dashboard_path %>
+      </div>
+    </div>
+  </body>
+</html>

@@ -5,10 +5,10 @@ class DashboardController < ApplicationController
     @user = current_user
     @lost_items = @user.lost_items.active.recent.limit(5)
     @found_items = @user.found_items.active.recent.limit(5)
-    @pending_matches = Match.joins(:lost_item, :found_item)
-                           .where('lost_items.user_id = ? OR found_items.user_id = ?', @user.id, @user.id)
-                           .pending
-                           .limit(5)
+    @pending_matches = Match.left_joins(:lost_item, :found_item)
+                        .where('lost_items.user_id = ? OR found_items.user_id = ?', @user.id, @user.id)
+                        .where(status: 'matched')
+                        .limit(5)
     @recent_activity = get_recent_activity
   end
 

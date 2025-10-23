@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_21_153622) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_23_173246) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -42,13 +42,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_21_153622) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.integer "lost_item_id", null: false
+    t.integer "lost_item_id"
     t.integer "found_item_id", null: false
     t.float "similarity_score"
     t.string "status"
     t.text "verification_answers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "claimer_id"
     t.index ["found_item_id"], name: "index_matches_on_found_item_id"
     t.index ["lost_item_id"], name: "index_matches_on_lost_item_id"
   end

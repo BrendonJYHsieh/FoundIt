@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All Found Items - FoundIt</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #2E5BBA;
+        margin-bottom: 20px;
+      }
+
+      /* ✅ Flash message styles */
+      .flash {
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+        border-radius: 8px;
+        margin: 20px auto;
+        width: 80%;
+        max-width: 800px;
+      }
+
+      .flash-notice {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+        border: 1px solid #c8e6c9;
+      }
+
+      .flash-alert {
+        background-color: #ffebee;
+        color: #c62828;
+        border: 1px solid #ffcdd2;
+      }
+
+      .top-nav {
+        text-align: center;
+        margin-bottom: 25px;
+      }
+
+      .top-nav a {
+        color: #2E5BBA;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 8px 16px;
+        border: 2px solid #2E5BBA;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+      }
+
+      .top-nav a:hover {
+        background: #2E5BBA;
+        color: white;
+      }
+
+      .feed-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: transform 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 15px;
+      }
+
+      .item-type {
+        color: #2E5BBA;
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+
+      .status {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        margin-top: 5px;
+      }
+
+      .status-active { background: #e8f5e8; color: #2e7d32; }
+      .status-returned { background: #fff7d1; color: #8c6d00; }
+      .status-closed { background: #ffebee; color: #c62828; }
+
+      .posted-by {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 10px;
+      }
+
+      .btn-view {
+        display: inline-block;
+        margin-top: 10px;
+        background: #2E5BBA;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .btn-view:hover {
+        background: #1E4A9A;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <div class="top-nav">
+        <%= link_to "← Back to Dashboard", dashboard_path %>
+      </div>
+
+      <%# ✅ Flash messages (green banner, red alerts, etc.) %>
+
+      <h1>🌍 All Active Found Items</h1>
+
+      <div class="feed-grid">
+      <% @found_items.each do |item| %>
+        <div class="card feed-card" data-desc="<%= item.description %>">
+          <%= link_to found_item_path(item), style: "text-decoration: none; color: inherit;" do %>
+            <% if item.photos_array.any? %>
+              <img src="<%= item.photos_array.first %>" alt="Found item image">
+            <% else %>
+              <img src="https://via.placeholder.com/400x200?text=No+Image" alt="No image available">
+            <% end %>
+      
+            <div class="card-content">
+              <div class="item-type"><%= item.item_type.capitalize %></div>
+              <p><%= item.description.truncate(100) %></p>
+              <p><strong>Location:</strong> <%= item.location %></p>
+              <p><strong>Date Found:</strong> <%= item.found_date.strftime("%B %d, %Y") %></p>
+              <span class="status status-<%= item.status %>"><%= item.status.capitalize %></span>
+              <p class="posted-by">Posted by: <%= item.user.email %></p>
+            </div>
+          <% end %>
+      
+          <% if logged_in? && item.user != current_user && item.status == 'active' %>
+          <%= button_to "Claim Item",
+          claim_found_item_path(item),
+          method: :patch,
+          class: "btn-view",
+          data: { turbo: false, turbo_confirm: "Do you want to claim this item?" } %>      
+          <% end %>
+        </div>
+      <% end %>          
+      </div>
+    </div>
+  </body>
+</html>

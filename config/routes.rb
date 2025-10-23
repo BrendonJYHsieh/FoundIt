@@ -25,18 +25,22 @@ Rails.application.routes.draw do
     member do
       patch :mark_returned
       patch :close
+      patch :claim
+    end
+    collection do
+      get :feed 
+      patch :claim
     end
     resources :matches, only: [:index, :show]
-  end
-  
-  # Match verification routes
-  resources :matches, only: [:show, :update] do
+  end  
+
+  # Matches routes
+  resources :matches, only: [:index, :show] do
     member do
-      patch :verify
+      patch :approve
       patch :reject
-      patch :complete
     end
-  end
+  end  
   
   # Dashboard routes
   get "dashboard", to: "dashboard#index"

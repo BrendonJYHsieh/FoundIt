@@ -81,3 +81,18 @@ Feature: Found Item Management
     When I click on the "MacBook Air" item link
     Then I should not see the "Mark as Returned" button
     And I should not see the "Close Listing" button
+
+  Scenario: View All Found Items Feed
+    Given multiple users have posted found items
+    When I visit the public found items feed page
+    Then I should see found items from multiple users
+    And I should see each found item’s description, location, date, and "Posted by" email
+    And I should not see the "Claim Item" button for my own items
+    But I should see the "Claim Item" button for items posted by others
+
+  Scenario: Claim Someone Else’s Found Item
+    Given another user has posted a found item "Silver MacBook"
+    When I visit the public found items feed page
+    And I click on "Claim Item" for "Silver MacBook"
+    Then I should see "✅ Claim request sent to the poster!" on the screen
+

@@ -31,14 +31,14 @@ class FoundItem < ApplicationRecord
   
   def mark_as_returned!
     update!(status: 'returned')
-    matches.pending.update_all(status: 'cancelled')
-    user.increment_reputation(5) # Reward for returning item
+    matches.where(status: 'matched').update_all(status: 'cancelled')
+    user.increment_reputation(5)
   end
   
   def close!
     update!(status: 'closed')
-    matches.pending.update_all(status: 'cancelled')
-  end
+    matches.where(status: 'matched').update_all(status: 'cancelled')
+  end  
   
   private
   

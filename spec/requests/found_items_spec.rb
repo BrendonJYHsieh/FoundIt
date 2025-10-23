@@ -19,6 +19,9 @@ RSpec.describe FoundItemsController, type: :controller do
     allow(controller).to receive(:current_user).and_return(user)
   end
 
+  # ---------------------------------------------------------
+  # INDEX – current user's own found items
+  # ---------------------------------------------------------
   describe "GET #index" do
     it "lists only the current user's found items" do
       other_user.found_items.create!(
@@ -30,19 +33,61 @@ RSpec.describe FoundItemsController, type: :controller do
       )
 
       get :index
+      expect(response).to have_http_status(:ok)
       expect(assigns(:found_items)).to eq([found_item])
     end
   end
 
+  # ---------------------------------------------------------
+  # FEED – all users’ active found items
+  # ---------------------------------------------------------
+  describe "GET #feed" do
+    it "lists all active found items across users" do
+      other_item = other_user.found_items.create!(
+        item_type: "wallet",
+        description: "Brown wallet in Uris",
+        location: "Uris Hall",
+        found_date: Date.today,
+        status: "active"
+      )
+
+      get :feed
+      expect(response).to have_http_status(:ok)
+      expect(assigns(:found_items)).to include(found_item, other_item)
+    end
+
+    it "does not include returned or closed items" do
+      closed_item = other_user.found_items.create!(
+        item_type: "id",
+        description: "Student ID",
+        location: "Lerner",
+        found_date: Date.today,
+        status: "closed"
+      )
+
+      get :feed
+      expect(assigns(:found_items)).not_to include(closed_item)
+    end
+  end
+
+  # ---------------------------------------------------------
+  # SHOW
+  # ---------------------------------------------------------
   describe "GET #show" do
     it "renders the show page for the found item including photos" do
       get :show, params: { id: found_item.id }
       expect(response).to have_http_status(:ok)
       expect(assigns(:found_item)).to eq(found_item)
-      expect(assigns(:found_item).photos_array).to include("https://example.com/photo1.jpg", "https://example.com/photo2.jpg")
+      expect(assigns(:found_item).photos_array).to include(
+        "https://example.com/photo1.jpg",
+        "https://example.com/photo2.jpg"
+      )
     end
   end
 
+  # ---------------------------------------------------------
+  # CREATE
+  # ---------------------------------------------------------
   describe "POST #create" do
     it "creates a new found item for the current user including photo URLs" do
       photo_urls = "https://example.com/pic1.jpg, https://example.com/pic2.jpg"
@@ -67,6 +112,9 @@ RSpec.describe FoundItemsController, type: :controller do
     end
   end
 
+  # ---------------------------------------------------------
+  # MARK AS RETURNED
+  # ---------------------------------------------------------
   describe "PATCH #mark_returned" do
     it "marks the item as returned if owned by current user" do
       patch :mark_returned, params: { id: found_item.id }
@@ -88,6 +136,9 @@ RSpec.describe FoundItemsController, type: :controller do
     end
   end
 
+  # ---------------------------------------------------------
+  # CLOSE LISTING
+  # ---------------------------------------------------------
   describe "PATCH #close" do
     it "closes the listing if user owns it" do
       patch :close, params: { id: found_item.id }
@@ -106,6 +157,24 @@ RSpec.describe FoundItemsController, type: :controller do
       patch :close, params: { id: other_item.id }
       expect(other_item.reload.status).to eq("active")
       expect(flash[:alert]).to include("Could not close this listing.")
+    end
+  end
+
+  # ---------------------------------------------------------
+  # CLAIM (feed-based)
+  # ---------------------------------------------------------
+  describe "PATCH #claim" do
+    it "allows a non-owner to claim an active item" do
+      allow(controller).to receive(:current_user).and_return(other_user)
+      patch :claim, params: { id: found_item.id }
+
+      expect(flash[:notice]).to include("✅ Claim request sent")
+      expect(response).to redirect_to(feed_found_items_path)
+    end
+
+    it "prevents an owner from claiming their own item" do
+      patch :claim, params: { id: found_item.id }
+      expect(flash[:alert]).to eq("You cannot claim this item.")
     end
   end
 end
