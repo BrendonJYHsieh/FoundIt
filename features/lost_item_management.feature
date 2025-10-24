@@ -9,14 +9,14 @@ Feature: Lost Item Management
   Scenario: Post Lost Item Successfully
     Given I am on the new lost item page
     When I select "phone" from "Item Type"
-    And I fill in "Description" with "iPhone 13 Pro with blue case, lost near Butler Library"
-    And I fill in "Location" with "Butler Library"
-    And I fill in "Lost Date" with "2024-01-15"
+    And I fill in lost item "Description" with "iPhone 13 Pro with blue case, lost near Butler Library"
+    And I fill in lost item "Location" with "Butler Library"
+    And I fill in lost item "Lost Date" with "2024-01-15"
     And I fill in verification questions with:
       | Question | Answer |
       | What color is the phone case? | Blue |
       | What sticker is on the back? | Columbia University |
-    And I click "Create Lost Item"
+    And I click lost item button "Create Lost Item"
     Then I should be redirected to the lost item show page
     And I should see "Lost item posted successfully!"
 
@@ -31,7 +31,7 @@ Feature: Lost Item Management
     Given I have posted a lost item "iPhone 13 Pro"
     When I visit my lost items index page
     Then I should see "iPhone 13 Pro" in the list
-    When I click "Mark as Found"
+    When I click lost item link "Mark as Found"
     Then I should see "Item marked as found!"
     And the item status should be "found"
 
@@ -39,13 +39,13 @@ Feature: Lost Item Management
     Given I have posted a lost item "iPhone 13 Pro"
     When I visit the lost item edit page
     And I change "Description" to "iPhone 13 Pro with blue case, lost near Butler Library entrance"
-    And I click "Update Lost Item"
+    And I click lost item update button "Update Lost Item"
     Then I should see "Lost item updated successfully!"
 
   Scenario: Delete Lost Item Post
     Given I have posted a lost item "iPhone 13 Pro"
     When I visit my lost items index page
-    And I click "Delete"
+    And I click lost item link "Delete"
     Then I should see "Lost item deleted successfully!"
     And the item should not appear in the list
 
@@ -61,7 +61,7 @@ Feature: Lost Item Management
     And I have posted a lost item "MacBook Pro"
     When I visit my lost items index page
     And I select "phone" from "Item Type"
-    And I click "Filter"
+    And I click lost item button "Filter"
     Then I should see "iPhone 13 Pro"
     And I should not see "MacBook Pro"
 
@@ -70,25 +70,25 @@ Feature: Lost Item Management
     And I have posted a lost item "MacBook Pro" at "Dodge Fitness Center"
     When I visit my lost items index page
     And I select "Butler Library" from "Location"
-    And I click "Filter"
+    And I click lost item button "Filter"
     Then I should see "iPhone 13 Pro"
     And I should not see "MacBook Pro"
 
   Scenario: Close Lost Item Post
     Given I have posted a lost item "iPhone 13 Pro"
     When I visit the lost item show page
-    And I click "Close Post"
+    And I click lost item link "Close Post"
     Then I should see "Lost item post closed!"
     And the item status should be "closed"
 
   Scenario: Create Lost Item with Photos
     Given I am on the new lost item page
     When I select "phone" from "Item Type"
-    And I fill in "Description" with "iPhone 13 Pro with photos"
-    And I fill in "Location" with "Butler Library"
-    And I fill in "Lost Date" with "2024-01-15"
-    And I fill in "Photos" with "photo1.jpg, photo2.jpg"
-    And I click "Create Lost Item"
+    And I fill in lost item "Description" with "iPhone 13 Pro with photos"
+    And I fill in lost item "Location" with "Butler Library"
+    And I fill in lost item "Lost Date" with "2024-01-15"
+    And I fill in lost item "Photos" with "photo1.jpg, photo2.jpg"
+    And I click lost item button "Create Lost Item"
     Then I should be redirected to the lost item show page
     And I should see "Lost item posted successfully!"
 
@@ -96,8 +96,8 @@ Feature: Lost Item Management
     Given I have posted a lost item "iPhone 13 Pro"
     And another user has posted a lost item "Samsung Galaxy"
     When I visit the all lost items page
-    And I fill in "Search" with "iPhone"
-    And I click "Search"
+    And I fill in lost item "Search" with "iPhone"
+    And I click lost item button "Search"
     Then I should see "iPhone 13 Pro"
     And I should not see "Samsung Galaxy"
 
@@ -113,10 +113,10 @@ Feature: Lost Item Management
   Scenario: Handle Invalid Lost Item Creation
     Given I am on the new lost item page
     When I select "phone" from "Item Type"
-    And I fill in "Description" with "Short"
-    And I fill in "Location" with "Butler Library"
-    And I fill in "Lost Date" with "2024-01-15"
-    And I click "Create Lost Item"
+    And I fill in lost item "Description" with "Short"
+    And I fill in lost item "Location" with "Butler Library"
+    And I fill in lost item "Lost Date" with "2024-01-15"
+    And I click lost item button "Create Lost Item"
     Then I should see "Description is too short"
     And I should remain on the new lost item page
 
@@ -129,9 +129,9 @@ Feature: Lost Item Management
   Scenario: Mobile Responsive Lost Item Creation
     Given I am on the new lost item page on mobile
     When I select "phone" from "Item Type"
-    And I fill in "Description" with "iPhone 13 Pro mobile test"
-    And I fill in "Location" with "Butler Library"
-    And I fill in "Lost Date" with "2024-01-15"
-    And I click "Create Lost Item"
+    And I fill in lost item "Description" with "iPhone 13 Pro mobile test"
+    And I fill in lost item "Location" with "Butler Library"
+    And I fill in lost item "Lost Date" with "2024-01-15"
+    And I click lost item button "Create Lost Item"
     Then I should be redirected to the lost item show page
     And I should see "Lost item posted successfully!"

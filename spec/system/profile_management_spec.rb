@@ -79,8 +79,9 @@ RSpec.describe "Profile Management", type: :system do
       # Test login with new password
       visit dashboard_path
       click_button 'Logout'
+      visit login_path
       fill_in 'Columbia Email', with: user.email
-      fill_in 'New Password', with: 'newpassword123'
+      fill_in 'Password', with: 'newpassword123'
       click_button 'Log In'
       
       expect(page).to have_current_path(dashboard_path)
@@ -172,15 +173,16 @@ RSpec.describe "Profile Management", type: :system do
   end
 
   describe "Profile Visibility" do
-    let(:other_user) { create(:user, first_name: 'Other', last_name: 'User') }
+    let(:test_user) { create(:user, first_name: 'John', last_name: 'Doe', email: 'john.doe@columbia.edu') }
+    let(:other_user) { create(:user, first_name: 'Other', last_name: 'User', email: 'other.user@columbia.edu') }
 
     before do
-      login_as(user)
+      login_as(test_user)
     end
 
     it "respects profile visibility settings" do
       # Set profile to private
-      visit edit_user_path(user)
+      visit edit_user_path(test_user)
       select 'Private - Only you can see your profile', from: 'Profile Visibility'
       click_button 'Update Profile'
       
@@ -190,7 +192,7 @@ RSpec.describe "Profile Management", type: :system do
       login_as(other_user)
       
       # Try to view profile (should work for now, but could be restricted)
-      visit user_path(user)
+      visit user_path(test_user)
       expect(page).to have_content('John Doe')
     end
   end

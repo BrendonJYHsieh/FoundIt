@@ -149,6 +149,11 @@
         </div>
 
         <div class="form-group">
+          <%= form.label :uni, "UNI" %>
+          <%= form.text_field :uni, placeholder: "Enter your UNI (e.g., jd4122)", required: true %>
+        </div>
+
+        <div class="form-group">
           <%= form.label :password, "Password" %>
           <%= form.password_field :password, placeholder: "Choose a secure password", required: true %>
         </div>

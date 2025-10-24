@@ -9,9 +9,11 @@ Feature: User Registration and Authentication
   Scenario: Student Registration with Valid Columbia Email
     Given I am on the signup page
     When I fill in "Email" with "john.doe@columbia.edu"
+    And I fill in "First Name" with "John"
+    And I fill in "Last Name" with "Doe"
     And I fill in "UNI" with "jd4122"
     And I fill in "Password" with "securepassword123"
-    And I fill in "Password Confirmation" with "securepassword123"
+    And I fill in "Confirm Password" with "securepassword123"
     And I click "Create Account"
     Then I should be redirected to the dashboard
     And I should see "Account created successfully!"
@@ -19,18 +21,22 @@ Feature: User Registration and Authentication
   Scenario: Registration with Invalid Email
     Given I am on the signup page
     When I fill in "Email" with "john.doe@gmail.com"
+    And I fill in "First Name" with "John"
+    And I fill in "Last Name" with "Doe"
     And I fill in "UNI" with "jd4122"
     And I fill in "Password" with "securepassword123"
-    And I fill in "Password Confirmation" with "securepassword123"
+    And I fill in "Confirm Password" with "securepassword123"
     And I click "Create Account"
     Then I should see "Email is invalid"
 
   Scenario: Registration with Invalid UNI Format
     Given I am on the signup page
     When I fill in "Email" with "john.doe@columbia.edu"
+    And I fill in "First Name" with "John"
+    And I fill in "Last Name" with "Doe"
     And I fill in "UNI" with "invalid123"
     And I fill in "Password" with "securepassword123"
-    And I fill in "Password Confirmation" with "securepassword123"
+    And I fill in "Confirm Password" with "securepassword123"
     And I click "Create Account"
     Then I should see "Uni is invalid"
 

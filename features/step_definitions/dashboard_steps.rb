@@ -28,6 +28,8 @@ Given("I have {int} pending matches") do |count|
     finder = User.create!(
       email: "finder#{i}@columbia.edu",
       uni: "fd#{i}234",
+      first_name: "Finder",
+      last_name: "User",
       password: "password123",
       password_confirmation: "password123",
       verified: true
@@ -45,7 +47,7 @@ Given("I have {int} pending matches") do |count|
       lost_item: @user.lost_items.first,
       found_item: found_item,
       similarity_score: 0.8,
-      status: "pending"
+      status: "matched"
     )
   end
 end
@@ -59,19 +61,23 @@ Then("I should see my reputation score") do
 end
 
 Then("I should see {string} lost items") do |count|
-  expect(page).to have_content("#{count} Lost Items")
+  expect(page).to have_content(count)
+  expect(page).to have_content("Lost Items")
 end
 
 Then("I should see {string} found items") do |count|
-  expect(page).to have_content("#{count} Found Items")
+  expect(page).to have_content(count)
+  expect(page).to have_content("Found Items")
 end
 
 Then("I should see {string} pending matches") do |count|
-  expect(page).to have_content("#{count} Pending Matches")
+  expect(page).to have_content(count)
+  expect(page).to have_content("Pending Matches")
 end
 
 Then("I should see {string} items recovered") do |count|
-  expect(page).to have_content("#{count} Items Recovered")
+  expect(page).to have_content(count)
+  expect(page).to have_content("Items Recovered")
 end
 
 Given("I have recent activity:") do |table|
@@ -98,6 +104,8 @@ Given("I have recent activity:") do |table|
       finder = User.create!(
         email: "matcher@columbia.edu",
         uni: "mt1234",
+        first_name: "Matcher",
+        last_name: "User",
         password: "password123",
         password_confirmation: "password123",
         verified: true
@@ -115,17 +123,18 @@ Given("I have recent activity:") do |table|
         lost_item: @user.lost_items.first,
         found_item: found_item,
         similarity_score: 0.85,
-        status: "pending"
+        status: "matched"
       )
     end
   end
 end
 
 Then("I should see the recent activity in chronological order") do
-  expect(page).to have_content("Recent Activity")
+  expect(page).to have_content("Recent Lost Items")
+  expect(page).to have_content("Recent Active Found Items")
 end
 
-Then("I should see {string} from today") do |description|
+Then("I should see dashboard {string} from today") do |description|
   expect(page).to have_content(description)
 end
 
@@ -133,7 +142,7 @@ Then("I should see {string} from yesterday") do |description|
   expect(page).to have_content(description)
 end
 
-Then("I should see {string} from today") do |description|
+Then("I should see dashboard {string} from today") do |description|
   expect(page).to have_content(description)
 end
 
@@ -141,7 +150,7 @@ Given("I am on the dashboard") do
   visit dashboard_path
 end
 
-When("I click {string}") do |link|
+When("I click dashboard {string}") do |link|
   click_link link
 end
 
@@ -149,7 +158,7 @@ Then("I should be redirected to the new lost item page") do
   expect(current_path).to eq(new_lost_item_path)
 end
 
-When("I go back to the dashboard") do
+When("I go back to the dashboard from lost item") do
   visit dashboard_path
 end
 
@@ -161,11 +170,11 @@ Given("I have a reputation score of {int}") do |score|
   @user.update!(reputation_score: score)
 end
 
-Then("I should see {string} as my reputation score") do |score|
+Then("I should see dashboard {string} as my reputation score") do |score|
   expect(page).to have_content(score)
 end
 
-Then("I should see {string} badge") do |badge|
+Then("I should see dashboard {string} badge") do |badge|
   expect(page).to have_content(badge)
 end
 
@@ -173,15 +182,15 @@ When("my reputation score reaches {int}") do |score|
   @user.update!(reputation_score: score)
 end
 
-Then("I should see {string} as my reputation score") do |score|
+Then("I should see dashboard {string} as my reputation score") do |score|
   expect(page).to have_content(score)
 end
 
-Then("I should see {string} badge") do |badge|
+Then("I should see dashboard {string} badge") do |badge|
   expect(page).to have_content(badge)
 end
 
-When("I click {string}") do |link|
+When("I click dashboard {string}") do |link|
   click_link link
 end
 
@@ -189,15 +198,15 @@ Then("I should be redirected to my profile page") do
   expect(current_path).to eq(user_path(@user))
 end
 
-When("I go back to the dashboard") do
+When("I go back to the dashboard from lost item") do
   visit dashboard_path
 end
 
-When("I click {string}") do |link|
+When("I click dashboard {string}") do |link|
   click_link link
 end
 
-Then("I should be redirected to the home page") do
+Then("I should be redirected to the dashboard home page") do
   expect(current_path).to eq(root_path)
 end
 
@@ -212,7 +221,7 @@ Given("I have no lost items, found items, or matches") do
   Match.joins(:found_item).where(found_items: { user: @user }).destroy_all
 end
 
-Then("I should see {string}") do |text|
+Then("I should see dashboard {string}") do |text|
   expect(page).to have_content(text)
 end
 

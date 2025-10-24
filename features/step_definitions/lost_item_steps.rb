@@ -13,7 +13,7 @@ When("I fill in verification questions with:") do |table|
   fill_in "Verification Questions", with: questions.to_json
 end
 
-When("I click {string}") do |button|
+When("I click lost item button {string}") do |button|
   click_button button
 end
 
@@ -77,7 +77,7 @@ Then("I should see {string} in the list") do |item_type|
   expect(page).to have_content(item_type)
 end
 
-When("I click {string}") do |action|
+When("I click lost item link {string}") do |action|
   click_link action
 end
 
@@ -97,7 +97,7 @@ When("I change {string} to {string}") do |field, value|
   fill_in field, with: value
 end
 
-When("I click {string}") do |button|
+When("I click lost item update button {string}") do |button|
   click_button button
 end
 
@@ -105,7 +105,7 @@ Then("I should see {string}!") do |message|
   expect(page).to have_content(message)
 end
 
-When("I click {string}") do |action|
+When("I click lost item action {string}") do |action|
   click_link action
 end
 
@@ -155,7 +155,7 @@ When("I visit the all lost items page") do
   visit all_lost_items_path
 end
 
-When("I fill in {string} with {string}") do |field, value|
+When("I fill in lost item {string} with {string}") do |field, value|
   fill_in field, with: value
 end
 
@@ -176,7 +176,7 @@ Given("I am on the new lost item page on mobile") do
   visit new_lost_item_path
 end
 
-When("I click {string}") do |action|
+When("I click lost item mobile {string}") do |action|
   click_link action
 end
 
