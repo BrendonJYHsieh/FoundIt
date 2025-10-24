@@ -108,7 +108,7 @@
         font-weight: bold;
         color: #2E5BBA;
       }
-      .found-item-link {
+      .found-item-link, .lost-item-link {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -120,7 +120,7 @@
         transition: all 0.25s ease;
         border: 1px solid #f0f0f0;
       }
-      .found-item-link:hover {
+      .found-item-link:hover, .lost-item-link:hover {
         background: #f0f5ff;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(46, 91, 186, 0.15);
@@ -289,16 +289,18 @@
             <% if @lost_items.any? %>
               <ul class="item-list">
                 <% @lost_items.each do |item| %>
-                  <li>
-                    <div>
-                      <div class="item-type"><%= item.item_type.capitalize %></div>
-                      <div style="font-size: 0.9rem; color: #666;">
-                        Lost <%= time_ago_in_words(item.lost_date) %> ago
+                  <li class="lost-item-row">
+                    <%= link_to lost_item_path(item), class: "lost-item-link" do %>
+                      <div>
+                        <div class="item-type"><%= item.item_type.capitalize %></div>
+                        <div class="item-meta">
+                          Lost <%= time_ago_in_words(item.lost_date) %> ago
+                        </div>
                       </div>
-                    </div>
-                    <span class="item-status status-<%= item.status %>">
-                      <%= item.status.capitalize %>
-                    </span>
+                      <span class="item-status status-<%= item.status %>">
+                        <%= item.status.capitalize %>
+                      </span>
+                    <% end %>
                   </li>
                 <% end %>
               </ul>

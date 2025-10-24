@@ -110,10 +110,11 @@ class LostItemsController < ApplicationController
     data = params.require(:lost_item).permit(
       :item_type, :description, :location, :lost_date, :status, :photos
     )
-    # convert comma-separated photo URLs into JSON array for model storage
+    
+    # Clean and validate photo URLs
     if data[:photos].present?
-      urls = data[:photos].split(/[\s,]+/).map(&:strip).reject(&:blank?)
-      data[:photos] = urls.to_json
+      valid_urls = clean_image_urls(data[:photos])
+      data[:photos] = valid_urls.to_json
     else
       data[:photos] = '[]'
     end

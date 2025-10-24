@@ -8,3 +8,100 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Enhanced Image Display Styles */
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.photo-container {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.photo-container img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.photo-container img:hover {
+  transform: scale(1.05);
+}
+
+.photo-error {
+  padding: 20px;
+  background: #f8f9fa;
+  border: 1px dashed #ccc;
+  text-align: center;
+  color: #666;
+  max-width: 200px;
+  font-size: 0.9em;
+}
+
+.photo-error p {
+  margin: 0 0 5px 0;
+  font-weight: bold;
+  color: #dc3545;
+}
+
+.photo-error small {
+  color: #6c757d;
+  word-break: break-all;
+}
+
+/* Form Enhancement Styles */
+.help-text {
+  color: #666;
+  font-size: 0.9em;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+.help-text a {
+  color: #2E5BBA;
+  text-decoration: none;
+}
+
+.help-text a:hover {
+  text-decoration: underline;
+}
+
+.photo-urls-input {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  line-height: 1.4;
+  resize: vertical;
+}
+
+#photo-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 10px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+}
+
+#photo-preview img {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.2s ease;
+}
+
+#photo-preview img:hover {
+  border-color: #2E5BBA;
+}

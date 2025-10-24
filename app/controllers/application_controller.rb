@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user, :logged_in?
   
+  # Include helper methods in controllers
+  include ApplicationHelper
+  
   private
   
   def current_user

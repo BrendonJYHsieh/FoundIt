@@ -138,7 +138,15 @@
 
         <div>
           <%= f.label :photos, "Photo URLs (optional)" %>
-          <%= f.text_field :photos, placeholder: "Paste image URLs separated by commas" %>
+          <%= f.text_area :photos, 
+              rows: 3,
+              placeholder: "Paste image URLs here (one per line or separated by commas):\nhttps://example.com/image1.jpg\nhttps://example.com/image2.jpg",
+              class: "photo-urls-input" %>
+          <small class="help-text">
+            💡 <strong>Tips:</strong> Use <a href="https://postimg.cc" target="_blank">Postimg.cc</a> for easy image uploads. 
+            Upload your image, then copy the "Direct link" for best results.
+          </small>
+          <div id="photo-preview" style="margin-top: 10px;"></div>
         </div>
 
         <div style="text-align:center;">
@@ -150,5 +158,37 @@
         <%= link_to "← Back to Dashboard", dashboard_path %>
       </div>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const photoInput = document.querySelector('.photo-urls-input');
+      const previewContainer = document.getElementById('photo-preview');
+      
+      if (photoInput && previewContainer) {
+        photoInput.addEventListener('input', function() {
+          const urls = this.value.split(/[\n,]+/).map(url => url.trim()).filter(url => url);
+          
+          previewContainer.innerHTML = '';
+          
+          urls.forEach((url, index) => {
+            if (url) {
+              const img = document.createElement('img');
+              img.src = url;
+              img.style.maxWidth = '100px';
+              img.style.maxHeight = '100px';
+              img.style.margin = '5px';
+              img.style.border = '1px solid #ddd';
+              img.style.borderRadius = '4px';
+              img.onerror = function() {
+                this.style.border = '2px solid red';
+                this.alt = 'Failed to load';
+              };
+              previewContainer.appendChild(img);
+            }
+          });
+        });
+      }
+    });
+    </script>
   </body>
 </html>

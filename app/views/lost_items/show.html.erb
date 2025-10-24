@@ -57,16 +57,51 @@
       }
 
       .photos {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
         margin-top: 10px;
       }
 
-      .photos img {
-        width: 100%;
-        border-radius: 10px;
-        border: 2px solid #f0f0f0;
+      .photo-container {
+        position: relative;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f8f9fa;
+      }
+
+      .photo-container img {
+        max-width: 200px;
+        max-height: 200px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.2s ease;
+      }
+
+      .photo-container img:hover {
+        transform: scale(1.05);
+      }
+
+      .photo-error {
+        padding: 20px;
+        background: #f8f9fa;
+        border: 1px dashed #ccc;
+        text-align: center;
+        color: #666;
+        max-width: 200px;
+        font-size: 0.9em;
+      }
+
+      .photo-error p {
+        margin: 0 0 5px 0;
+        font-weight: bold;
+        color: #dc3545;
+      }
+
+      .photo-error small {
+        color: #6c757d;
+        word-break: break-all;
       }
 
       .actions {
@@ -157,8 +192,19 @@
           <div class="detail">
             <strong>Photos:</strong>
             <div class="photos">
-              <% @lost_item.photos_array.each do |url| %>
-                <img src="<%= url %>" alt="Lost item photo">
+              <% @lost_item.photos_array.each_with_index do |url, index| %>
+                <div class="photo-container">
+                  <img src="<%= url %>" 
+                       alt="Lost item photo <%= index + 1 %>"
+                       loading="lazy"
+                       onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                       onload="this.nextElementSibling.style.display='none';">
+                  <div class="photo-error" style="display: none;">
+                    <p>❌ Image failed to load</p>
+                    <small>URL: <%= url %></small>
+                    <br><small>Try using <a href="https://postimg.cc" target="_blank">Postimg.cc</a> for reliable image hosting</small>
+                  </div>
+                </div>
               <% end %>
             </div>
           </div>
