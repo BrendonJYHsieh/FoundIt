@@ -1,8 +1,5 @@
 # features/step_definitions/missing_steps.rb
 
-Then('I should not see {string}') do |text|
-  expect(page).not_to have_content(text)
-end
 
 Then('the iPhone {int} Pro should be listed first') do |int|
   # This step would check that iPhone 13 Pro appears before other items
