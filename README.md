@@ -43,7 +43,9 @@ The installation script will automatically:
 - Install Ruby dependencies
 - Set up separate development and test databases
 - Run migrations and seed data
-- Create helpful scripts for running tests and starting the server
+- Create all test scripts (run_tests.sh, run_rspec_tests.sh, run_cucumber_tests.sh)
+- Create server startup script (start_server.sh)
+- Configure test coverage reporting
 
 ## Database Management
 
@@ -82,30 +84,72 @@ Butler Library, Lerner Hall, Hamilton Hall, John Jay Hall, and more...
 
 ## Testing
 
-### RSpec Tests
-```bash
-# Run all tests
-bundle exec rspec
+FoundIt includes comprehensive test coverage with both unit tests (RSpec) and integration tests (Cucumber). The project provides separate scripts for running each test suite individually or together.
 
-# Run specific tests
+### Quick Test Commands
+
+```bash
+# Run all tests with combined coverage (RSpec + Cucumber)
+./run_tests.sh
+
+# Run only RSpec unit tests with coverage
+./run_rspec_tests.sh
+
+# Run only Cucumber integration tests with coverage
+./run_cucumber_tests.sh
+```
+
+### RSpec Unit Tests
+```bash
+# Run all RSpec tests
+./run_rspec_tests.sh
+
+# Run specific test files
 bundle exec rspec spec/models/user_spec.rb
 bundle exec rspec spec/jobs/find_matches_job_spec.rb
 
-# Detailed output
+# Run with detailed output
 bundle exec rspec --format documentation
+
+# Run specific test by line number
+bundle exec rspec spec/models/user_spec.rb:25
 ```
 
-### Cucumber Tests
+### Cucumber Integration Tests
 ```bash
-# Run all features
-bundle exec cucumber
+# Run all Cucumber tests
+./run_cucumber_tests.sh
 
 # Run specific features
 bundle exec cucumber features/user_registration.feature
 bundle exec cucumber features/smart_matching.feature
+
+# Run with tags
+bundle exec cucumber --tags @smoke
+
+# Dry run (check syntax without executing)
+bundle exec cucumber --dry-run
 ```
 
 ### Test Coverage
+
+FoundIt uses SimpleCov for comprehensive test coverage analysis with the following features:
+
+#### Coverage Analysis
+```bash
+# Run all tests with combined coverage
+./run_tests.sh
+
+# Run RSpec with coverage
+./run_rspec_tests.sh
+
+# Run Cucumber with coverage
+./run_cucumber_tests.sh
+
+# View coverage report
+open coverage/index.html
+```
+
 - **Model Tests**: Validations, associations, business logic
 - **Controller Tests**: Request handling and authentication
 - **Job Tests**: Background processing and algorithms

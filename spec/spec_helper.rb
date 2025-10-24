@@ -13,6 +13,57 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+# SimpleCov configuration for test coverage
+require 'simplecov'
+
+SimpleCov.start 'rails' do
+  # Configure coverage thresholds
+  minimum_coverage 80
+  minimum_coverage_by_file 70
+  
+  # Add custom groups for better organization
+  add_group 'Models', 'app/models'
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Jobs', 'app/jobs'
+  add_group 'Helpers', 'app/helpers'
+  add_group 'Mailers', 'app/mailers'
+  
+  # Exclude files from coverage
+  add_filter '/config/'
+  add_filter '/spec/'
+  add_filter '/features/'
+  add_filter '/db/'
+  add_filter '/bin/'
+  add_filter '/lib/tasks/'
+  add_filter '/vendor/'
+  add_filter '/tmp/'
+  add_filter '/log/'
+  add_filter '/storage/'
+  add_filter '/public/'
+  add_filter '/node_modules/'
+  
+  # Track branches for better coverage analysis
+  track_files 'app/**/*.rb'
+  
+  # Generate HTML and text reports
+  formatter SimpleCov::Formatter::MultiFormatter.new([
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::SimpleFormatter
+  ])
+  
+  # Set coverage directory
+  coverage_dir 'coverage'
+  
+  # Merge results from multiple test runs (RSpec + Cucumber)
+  merge_timeout 3600
+  
+  # Enable merging for combined coverage
+  command_name 'RSpec Unit Tests'
+end
+
+# Load Rails environment
+require_relative '../config/environment'
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

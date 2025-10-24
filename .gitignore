@@ -32,3 +32,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore generated test scripts (created by install.sh)
+/run_tests.sh
+/run_rspec_tests.sh
+/run_cucumber_tests.sh
+/start_server.sh
+
+# Ignore coverage reports
+/coverage/
