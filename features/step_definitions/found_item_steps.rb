@@ -10,6 +10,8 @@ Given('I log in as {string}') do |email|
     u.password = 'password'
     u.uni = uni
     u.verified = true if u.respond_to?(:verified)
+    u.first_name = "Founder"
+    u.last_name = "User"
   end
 
   visit login_path
@@ -60,7 +62,7 @@ end
 # View All Found Items
 # --------------------------------------------------
 Given('a found item with photos exists') do
-  user = @user || User.create!(email: 'ss2222@columbia.edu', password: 'password')
+  user = @user || User.create!(email: 'ss2222@columbia.edu', password: 'password', first_name: "Finder", last_name: "User")
   @found_item = FoundItem.create!(
     user: user,
     item_type: 'wallet',
@@ -165,8 +167,8 @@ end
 # --------------------------------------------------
 
 Given('multiple users have posted found items') do
-  @user1 = User.create!(email: 'ab1234@columbia.edu', password: 'password', uni: 'ab1234')
-  @user2 = User.create!(email: 'bc5678@columbia.edu', password: 'password', uni: 'bc5678')
+  @user1 = User.create!(email: 'ab1234@columbia.edu', password: 'password', uni: 'ab1234', first_name: "Finder", last_name: "User",)
+  @user2 = User.create!(email: 'bc5678@columbia.edu', password: 'password', uni: 'bc5678', first_name: "Finder", last_name: "User2",)
 
   @item1 = @user1.found_items.create!(
     item_type: 'phone',
@@ -214,7 +216,7 @@ end
 
 
 Given('another user has posted a found item {string}') do |desc|
-  @poster = User.create!(email: 'po1111@columbia.edu', password: 'password', uni: 'po1122')
+  @poster = User.create!(email: 'po1111@columbia.edu', password: 'password', uni: 'po1122', first_name: "Finder", last_name: "User",)
   @found_item = @poster.found_items.create!(
     item_type: 'laptop',
     description: desc,
