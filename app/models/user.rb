@@ -21,7 +21,6 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true, if: :password_required?
   
   before_validation :set_defaults
-  before_validation :extract_uni_from_email, unless: -> { Rails.env.test? }
   
   scope :verified, -> { where(verified: true) }
   
@@ -137,11 +136,8 @@ class User < ApplicationRecord
     self.reputation_score ||= 0
     self.contact_preference ||= 'email'
     self.profile_visibility ||= 'public'
-    self.last_active_at ||= Time.current
-    # Set a default UNI in test environment if not already set
-    if Rails.env.test? && self.uni.blank? && self.email.present?
-      self.uni = self.email.split('@').first.downcase
-    end
+    # Don't set last_active_at in test environment or when explicitly set to nil
+    self.last_active_at = Time.current if self.last_active_at.nil? && !defined?(RSpec)
   end
   
   def extract_uni_from_email

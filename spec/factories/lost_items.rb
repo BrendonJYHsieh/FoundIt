@@ -3,11 +3,15 @@ FactoryBot.define do
   factory :lost_item do
     association :user
     item_type { "phone" }
-    description { "iPhone 13 Pro with blue case" }
+    description { "iPhone 13 Pro Max, black case, lost near Butler Library" }
     location { "Butler Library" }
-    lost_date { 1.day.ago }
-    verification_questions { '[{"question": "What color is the phone case?", "answer": "Blue"}]' }
+    lost_date { Date.current }
     status { "active" }
+    photos { "[]" }
+
+    trait :with_photos do
+      photos { '["photo1.jpg", "photo2.jpg"]' }
+    end
 
     trait :found do
       status { "found" }
@@ -17,14 +21,8 @@ FactoryBot.define do
       status { "closed" }
     end
 
-    trait :laptop do
-      item_type { "laptop" }
-      description { "MacBook Pro 13-inch" }
-    end
-
-    trait :textbook do
-      item_type { "textbook" }
-      description { "Introduction to Computer Science" }
+    trait :with_verification_questions do
+      verification_questions { '[{"question": "What color is the case?", "answer": "black"}]' }
     end
   end
 end

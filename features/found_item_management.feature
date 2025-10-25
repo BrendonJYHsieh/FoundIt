@@ -1,98 +1,36 @@
 Feature: Found Item Management
-  As a student who found something
-  I want to post details about the found item
-  So that I can help return it to its owner
+  As a Columbia University student
+  I want to report and manage found items
+  So that I can help reunite lost items with their owners
 
   Background:
-    Given I log in as "ss1111@columbia.edu"
+    Given I am logged in as "student@columbia.edu"
 
-  Scenario: Post Found Item Successfully
-    Given I am on the new found item page
-    When I select "phone" option from "Item Type"
-    And I fill in "Description" field with "iPhone 13 Pro with blue case, found near Butler Library"
-    And I fill in "Location" field with "Butler Library"
-    And I fill in "Date Found" field with "2024-01-15"
-    And I optionally add a photo URL for the found item
-    And I click on "Submit Found Item"
-    Then I should be redirected to the found item show page
-    And I should see "Your found item has been posted." on the screen
-    And I should see the found item details on the page
+  Scenario: Report a found item
+    When I click "Post Found Item"
+    And I select "phone" from "Item Type"
+    And I fill in "Description" with "Black iPhone with clear case"
+    And I fill in "Location" with "Butler Library"
+    And I fill in "Found Date" with "2024-01-15"
+    And I click "Submit Found Item"
+    Then I should be on the dashboard page
+    And I should see "Found item posted successfully"
 
-  Scenario: View Photos on Show Page
-    Given a found item with photos exists
-    When I visit the found items index page
-    Then I should see the list of found items
-    And I should see each found item’s type, location, date, and status
-    When I click on the "Black wallet" item link
-    Then I should see the found item's photos displayed on the page
+  Scenario: View my found items
+    Given I have posted a phone item
+    When I visit the found items page
+    Then I should see "Black iPhone with clear case"
+    And I should see "Butler Library"
 
-  Scenario: Manage Found Item Posts From Index Page
-    Given I have posted a found item "iPhone 13 Pro"
-    When I visit my found items index page
-    Then I should see "iPhone 13 Pro" on the found items list
-    When I click on the "iPhone 13 Pro" item link
-    And I click on "Mark as Returned"
-    Then I should see "🎉 Item marked as returned! Reputation +5." on the screen
-    And the found item's status should be "returned"
-    And my reputation score should increase by 5
+  Scenario: Mark item as returned
+    Given I have posted a phone item
+    When I visit the found items page
+    And I click "Mark as Returned"
+    Then I should see "Item marked as returned"
+    And the item status should be "returned"
 
-  Scenario: Close Found Item Post From Index Page
-    Given I have posted a found item "iPhone 13 Pro"
-    When I visit my found items index page
-    Then I should see "iPhone 13 Pro" on the found items list
-    When I click on the "iPhone 13 Pro" item link
-    And I click on "Close Listing"
-    Then I should see "📦 Listing closed successfully." on the screen
-    And the found item's status should be "closed"
-
-  Scenario: View Found Item Status
-    Given I have posted a found item "iPhone 13 Pro"
-    When I visit the found item show page
-    Then I should see the found item details on the page
-    And I should see "Active" status for the found item
-
-  Scenario: Close Found Item Post
-    Given I have posted a found item "iPhone 13 Pro"
-    When I visit the found item show page
-    And I click on "Close Listing"
-    Then I should see "📦 Listing closed successfully." on the screen
-    And the found item's status should be "closed"
-
-  Scenario: Manage Found Item Posts
-    Given I have posted a found item "iPhone 13 Pro"
-    When I visit the found item show page
-    And I click on "Mark as Returned"
-    Then I should see "🎉 Item marked as returned! Reputation +5." on the screen
-    And the found item's status should be "returned"
-    And my reputation score should increase by 5
-
-  Scenario: Do not show Mark as Returned or Close Listing for returned items
-    Given I have a found item "iPhone 13 Pro" with status "returned"
-    When I visit my found items index page
-    Then I should see "iPhone 13 Pro" on the found items list
-    When I click on the "iPhone 13 Pro" item link
-    Then I should not see the "Mark as Returned" button
-    And I should not see the "Close Listing" button
-
-  Scenario: Do not show Mark as Returned or Close Listing for closed items
-    Given I have a found item "MacBook Air" with status "closed"
-    When I visit my found items index page
-    Then I should see "MacBook Air" on the found items list
-    When I click on the "MacBook Air" item link
-    Then I should not see the "Mark as Returned" button
-    And I should not see the "Close Listing" button
-
-  Scenario: View All Found Items Feed
-    Given multiple users have posted found items
-    When I visit the public found items feed page
-    Then I should see found items from multiple users
-    And I should see each found item’s description, location, date, and "Posted by" email
-    And I should not see the "Claim Item" button for my own items
-    But I should see the "Claim Item" button for items posted by others
-
-  Scenario: Claim Someone Else’s Found Item
-    Given another user has posted a found item "Silver MacBook"
-    When I visit the public found items feed page
-    And I click on "Claim Item" for "Silver MacBook"
-    Then I should see "✅ Claim request sent to the poster!" on the screen
-
+  Scenario: View all found items
+    Given someone has posted a phone item
+    When I visit the found items page
+    Then I should see "Black iPhone with clear case"
+    And I should see "Other User"

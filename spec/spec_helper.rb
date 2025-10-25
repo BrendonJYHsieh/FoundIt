@@ -90,9 +90,8 @@ RSpec.configure do |config|
 
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards
-  # compatibility in RSpec 3). It causes shared context metadata to be
-  # inherited by the metadata hash of host groups and examples, rather than
-  # triggering implicit auto-inclusion in groups with matching metadata.
+  # compatibility in RSpec 3). It causes shared examples to be scoped to the
+  # host group rather than the current group.
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
 # The settings below are suggested to provide a good initial experience
@@ -137,9 +136,8 @@ RSpec.configure do |config|
   config.order = :random
 
   # Seed global randomization in this process using the `--seed` CLI option.
-  # Setting this allows you to use `--seed` to deterministically reproduce
-  # test failures related to randomization by passing the same `--seed` value
-  # as the one that triggered the failure.
+  # Setting this allows individual spec files to use `--seed` to randomize
+  # their execution order, which is useful for parallel execution.
   Kernel.srand config.seed
 =end
 end

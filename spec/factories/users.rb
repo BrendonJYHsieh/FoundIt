@@ -1,30 +1,33 @@
 # spec/factories/users.rb
 FactoryBot.define do
   factory :user do
-    sequence(:email) { |n| "test#{n}@columbia.edu" }
-    sequence(:uni) { |n| "ts#{n.to_s.rjust(4, '0')}" }
-    first_name { "Test" }
-    last_name { "User" }
+    sequence(:email) { |n| "user#{n}@columbia.edu" }
+    sequence(:uni) { |n| "abc#{n.to_s.rjust(4, '0')}" }
+    first_name { "John" }
+    last_name { "Doe" }
     password { "password123" }
     password_confirmation { "password123" }
     verified { true }
     reputation_score { 0 }
+    contact_preference { "email" }
+    profile_visibility { "public" }
+    last_active_at { nil }
 
-    trait :unverified do
-      verified { false }
+    trait :with_profile do
+      bio { "Computer Science student" }
+      phone { "555-123-4567" }
     end
 
-    trait :good_samaritan do
+    trait :high_reputation do
       reputation_score { 15 }
     end
 
-    trait :with_profile do
-      first_name { "John" }
-      last_name { "Doe" }
-      bio { "Test bio" }
-      phone { "555-123-4567" }
-      contact_preference { "email" }
-      profile_visibility { "public" }
+    trait :verified do
+      verified { true }
+    end
+
+    trait :unverified do
+      verified { false }
     end
   end
 end

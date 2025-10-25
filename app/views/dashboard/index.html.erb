@@ -234,7 +234,7 @@
       <div class="container">
         <div class="header-content">
           <div class="welcome">
-            Welcome back, <%= @user.email.split('@').first.capitalize %>! 👋
+            Welcome back, <%= @user.display_name %>! 👋
           </div>
           <div class="nav-links">
             <%= link_to "Post Lost Item", new_lost_item_path %>
