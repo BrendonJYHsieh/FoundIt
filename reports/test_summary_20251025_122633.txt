@@ -1,0 +1,31 @@
+# FoundIt Test Report Summary
+Generated: Sat Oct 25 12:28:15 EDT 2025
+Timestamp: 20251025_122633
+
+## Test Results Summary
+
+### RSpec Results
+RSpec tests completed
+
+### Cucumber Results
+Cucumber tests completed
+
+### Coverage Results
+Coverage report available at: coverage/index.html
+
+## Report Files Generated
+
+### HTML Reports
+- RSpec: reports/rspec_report.html
+- Cucumber: reports/cucumber_report.html
+- Coverage: coverage/index.html
+
+### JSON Reports
+- RSpec: reports/rspec_report.json
+- Cucumber: reports/cucumber_report.json
+
+## Quick Access Commands
+- Open HTML coverage report: open coverage/index.html
+- Open RSpec HTML report: open reports/rspec_report.html
+- Open Cucumber HTML report: open reports/cucumber_report.html
+

@@ -4,7 +4,7 @@
     "uri": "features/found_item_management.feature",
     "keyword": "Feature",
     "name": "Found Item Management",
-    "description": "  As a Columbia University student\n  I want to report found items\n  So that I can help reunite lost items with their owners",
+    "description": "  As a Columbia University student\n  I want to report and manage found items\n  So that I can help reunite lost items with their owners",
     "line": 1,
     "elements": [
       {
@@ -16,14 +16,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am logged in as \"jane.smith@columbia.edu\"",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
               "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 168403000
+              "duration": 169370000
             }
           }
         ],
@@ -34,7 +34,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 49000
+              "duration": 12000
             }
           },
           {
@@ -43,15 +43,15 @@
             },
             "result": {
               "status": "passed",
-              "duration": 33000
+              "duration": 18000
             }
           }
         ]
       },
       {
-        "id": "found-item-management;report-a-found-item-successfully",
+        "id": "found-item-management;report-a-found-item",
         "keyword": "Scenario",
-        "name": "Report a found item successfully",
+        "name": "Report a found item",
         "description": "",
         "line": 9,
         "type": "scenario",
@@ -61,35 +61,35 @@
             "name": "I click \"Post Found Item\"",
             "line": 10,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
               "status": "passed",
-              "duration": 8893000
+              "duration": 8728000
             }
           },
           {
             "keyword": "And ",
-            "name": "I fill in \"Item Type\" with \"phone\"",
+            "name": "I select \"phone\" from \"Item Type\"",
             "line": 11,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:191"
             },
             "result": {
               "status": "passed",
-              "duration": 589000
+              "duration": 675000
             }
           },
           {
             "keyword": "And ",
-            "name": "I fill in \"Description\" with \"iPhone 13 Pro Max, black case, found in Butler Library\"",
+            "name": "I fill in \"Description\" with \"Black iPhone with clear case\"",
             "line": 12,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
               "status": "passed",
-              "duration": 543000
+              "duration": 752000
             }
           },
           {
@@ -97,11 +97,11 @@
             "name": "I fill in \"Location\" with \"Butler Library\"",
             "line": 13,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
               "status": "passed",
-              "duration": 1221000
+              "duration": 1079000
             }
           },
           {
@@ -109,59 +109,47 @@
             "name": "I fill in \"Found Date\" with \"2024-01-15\"",
             "line": 14,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
               "status": "passed",
-              "duration": 694000
+              "duration": 810000
             }
           },
           {
             "keyword": "And ",
-            "name": "I click \"Post Found Item\"",
+            "name": "I click \"Submit Found Item\"",
             "line": 15,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
               "status": "passed",
-              "duration": 22386000
+              "duration": 21924000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"Your found item has been posted.\"",
+            "name": "I should be on the dashboard page",
             "line": 16,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:273"
             },
             "result": {
               "status": "passed",
-              "duration": 1681000
+              "duration": 27099000
             }
           },
           {
             "keyword": "And ",
-            "name": "I should be on the found item details page",
+            "name": "I should see \"Found item posted successfully\"",
             "line": 17,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:161"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
               "status": "passed",
-              "duration": 580000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"iPhone 13 Pro Max, black case, found in Butler Library\"",
-            "line": 18,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2174000
+              "duration": 18569000
             }
           }
         ],
@@ -172,7 +160,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 27000
+              "duration": 86000
             }
           }
         ]
@@ -186,417 +174,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am logged in as \"jane.smith@columbia.edu\"",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
               "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 51479000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3000
-            }
-          }
-        ]
-      },
-      {
-        "id": "found-item-management;report-found-item-with-missing-required-fields",
-        "keyword": "Scenario",
-        "name": "Report found item with missing required fields",
-        "description": "",
-        "line": 20,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "When ",
-            "name": "I click \"Post Found Item\"",
-            "line": 21,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 7627000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Item Type\" with \"phone\"",
-            "line": 22,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1881000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I leave \"Description\" empty",
-            "line": 23,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:141"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 492000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Location\" with \"Butler Library\"",
-            "line": 24,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1271000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Found Date\" with \"2024-01-15\"",
-            "line": 25,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 362000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Post Found Item\"",
-            "line": 26,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 14701000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"Description can't be blank\"",
-            "line": 27,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "expected to find text \"Description can't be blank\" in \"Please fix the errors below.\\nPost Found Item - FoundIt\\n📦 Post a Found Item\\nHelp others recover their lost belongings — share details of what you found.\\nItem Type Select type phone laptop textbook id keys wallet backpack other\\nDescription\\nLocation Found\\nDate Found\\nPhoto URLs (optional) [] 💡 Tips: Use Postimg.cc for easy image uploads. Upload your image, then copy the \\\"Direct link\\\" for best results.\\n← Back to Dashboard\" (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/common_steps.rb:166:in `\"I should see {string}\"'\nfeatures/found_item_management.feature:27:in `I should see \"Description can't be blank\"'",
-              "duration": 11280000
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 17000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"jane.smith@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 43859000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3000
-            }
-          }
-        ]
-      },
-      {
-        "id": "found-item-management;view-my-found-items",
-        "keyword": "Scenario",
-        "name": "View my found items",
-        "description": "",
-        "line": 29,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I have posted a found item \"iPhone\" at \"Butler Library\"",
-            "line": 30,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:229"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 13611000
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I click \"Found Items\"",
-            "line": 31,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 15870000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"iPhone\"",
-            "line": 32,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 534000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Butler Library\"",
-            "line": 33,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 375000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Active\"",
-            "line": 34,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 191000
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 13000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"jane.smith@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 24433000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          }
-        ]
-      },
-      {
-        "id": "found-item-management;mark-found-item-as-returned",
-        "keyword": "Scenario",
-        "name": "Mark found item as returned",
-        "description": "",
-        "line": 36,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I have posted a found item \"iPhone\" at \"Butler Library\"",
-            "line": 37,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:229"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2479000
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I go to the found item details page",
-            "line": 38,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:290"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4107000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Mark as Returned\"",
-            "line": 39,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 27120000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"Item marked as returned! Reputation +5.\"",
-            "line": 40,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 579000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "the item status should be \"returned\"",
-            "line": 41,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:224"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "undefined method `reload' for nil (NoMethodError)\n./features/step_definitions/common_steps.rb:225:in `\"the item status should be {string}\"'\nfeatures/found_item_management.feature:41:in `the item status should be \"returned\"'",
-              "duration": 189000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "my reputation should increase by 5",
-            "line": 42,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:312"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 15000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"jane.smith@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 25343000
+              "duration": 40367000
             }
           }
         ],
@@ -616,77 +201,187 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3000
+              "duration": 5000
             }
           }
         ]
       },
       {
-        "id": "found-item-management;close-found-item-listing",
+        "id": "found-item-management;view-my-found-items",
         "keyword": "Scenario",
-        "name": "Close found item listing",
+        "name": "View my found items",
         "description": "",
-        "line": 44,
+        "line": 19,
         "type": "scenario",
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I have posted a found item \"iPhone\" at \"Butler Library\"",
-            "line": 45,
+            "name": "I have posted a phone item",
+            "line": 20,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:229"
+              "location": "features/step_definitions/common_steps.rb:385"
             },
             "result": {
               "status": "passed",
-              "duration": 3043000
+              "duration": 8086000
             }
           },
           {
             "keyword": "When ",
-            "name": "I go to the found item details page",
-            "line": 46,
+            "name": "I visit the found items page",
+            "line": 21,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:290"
+              "location": "features/step_definitions/common_steps.rb:138"
             },
             "result": {
               "status": "passed",
-              "duration": 3976000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Close Listing\"",
-            "line": 47,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 19596000
+              "duration": 6862000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"Listing closed successfully!\"",
-            "line": 48,
+            "name": "I should see \"Black iPhone with clear case\"",
+            "line": 22,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "failed",
-              "error_message": "expected to find text \"Listing closed successfully!\" in \"📦 Listing closed successfully.\\nPhone Found - FoundIt\\n📦 Phone Found\\nClosed\\nItem Type:\\nPhone\\nDescription:\\niPhone found at Butler Library\\nLocation Found:\\nButler Library\\nDate Found:\\nOctober 25, 2025\\nPosted by:\\njane.smith@columbia.edu\\n← Back to Dashboard\" (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/common_steps.rb:166:in `\"I should see {string}\"'\nfeatures/found_item_management.feature:48:in `I should see \"Listing closed successfully!\"'",
-              "duration": 1640000
+              "status": "passed",
+              "duration": 10222000
             }
           },
           {
             "keyword": "And ",
-            "name": "the item status should be \"closed\"",
-            "line": 49,
+            "name": "I should see \"Butler Library\"",
+            "line": 23,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:224"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 971000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 6,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am logged in as \"student@columbia.edu\"",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 34983000
+            }
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5000
+            }
+          },
+          {
+            "match": {
+              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7000
+            }
+          }
+        ]
+      },
+      {
+        "id": "found-item-management;mark-item-as-returned",
+        "keyword": "Scenario",
+        "name": "Mark item as returned",
+        "description": "",
+        "line": 25,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have posted a phone item",
+            "line": 26,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:385"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6179000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I visit the found items page",
+            "line": 27,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:138"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4494000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I click \"Mark as Returned\"",
+            "line": 28,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1616000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see \"Item marked as returned\"",
+            "line": 29,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:196"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1657000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "the item status should be \"returned\"",
+            "line": 30,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:320"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1423000
             }
           }
         ],
@@ -711,14 +406,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am logged in as \"jane.smith@columbia.edu\"",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
               "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 35300000
+              "duration": 26992000
             }
           }
         ],
@@ -738,101 +433,65 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3000
+              "duration": 4000
             }
           }
         ]
       },
       {
-        "id": "found-item-management;view-all-found-items-feed",
+        "id": "found-item-management;view-all-found-items",
         "keyword": "Scenario",
-        "name": "View all found items feed",
+        "name": "View all found items",
         "description": "",
-        "line": 51,
+        "line": 32,
         "type": "scenario",
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I have posted a found item \"iPhone\" at \"Butler Library\"",
-            "line": 52,
+            "name": "someone has posted a phone item",
+            "line": 33,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:229"
+              "location": "features/step_definitions/common_steps.rb:437"
             },
             "result": {
               "status": "passed",
-              "duration": 2343000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "\"john.doe@columbia.edu\" has posted a found item \"Laptop\" at \"Mudd Hall\"",
-            "line": 53,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:259"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4183000
+              "duration": 7419000
             }
           },
           {
             "keyword": "When ",
-            "name": "I click \"Found Items Feed\"",
-            "line": 54,
+            "name": "I visit the found items page",
+            "line": 34,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:138"
             },
             "result": {
               "status": "passed",
-              "duration": 10017000
+              "duration": 3666000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"iPhone\"",
-            "line": 55,
+            "name": "I should see \"Black iPhone with clear case\"",
+            "line": 35,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
               "status": "passed",
-              "duration": 530000
+              "duration": 8516000
             }
           },
           {
             "keyword": "And ",
-            "name": "I should see \"Laptop\"",
-            "line": 56,
+            "name": "I should see \"Other User\"",
+            "line": 36,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
               "status": "passed",
-              "duration": 498000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Butler Library\"",
-            "line": 57,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 379000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Mudd Hall\"",
-            "line": 58,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 239000
+              "duration": 1918000
             }
           }
         ],
@@ -843,236 +502,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 17000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"jane.smith@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 21456000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3000
-            }
-          }
-        ]
-      },
-      {
-        "id": "found-item-management;claim-someone-else's-found-item",
-        "keyword": "Scenario",
-        "name": "Claim someone else's found item",
-        "description": "",
-        "line": 60,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "\"john.doe@columbia.edu\" has posted a found item \"iPhone\" at \"Butler Library\"",
-            "line": 61,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:259"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4728000
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I go to the found items feed",
-            "line": 62,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:294"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6557000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Claim\" on the iPhone",
-            "line": 63,
-            "match": {
-              "location": "features/found_item_management.feature:63"
-            },
-            "result": {
-              "status": "undefined"
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"Claim request sent to the poster!\"",
-            "line": 64,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "a match should be created between me and the found item",
-            "line": 65,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:308"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 19000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"jane.smith@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 27912000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3000
-            }
-          }
-        ]
-      },
-      {
-        "id": "found-item-management;cannot-claim-my-own-found-item",
-        "keyword": "Scenario",
-        "name": "Cannot claim my own found item",
-        "description": "",
-        "line": 67,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I have posted a found item \"iPhone\" at \"Butler Library\"",
-            "line": 68,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:229"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1764000
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I go to the found item details page",
-            "line": 69,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:290"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4232000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I try to claim the item",
-            "line": 70,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:304"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "Unable to find link or button \"Claim\" (Capybara::ElementNotFound)\n./features/step_definitions/common_steps.rb:305:in `\"I try to claim the item\"'\nfeatures/found_item_management.feature:70:in `I try to claim the item'",
-              "duration": 940000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"You cannot claim this item.\"",
-            "line": 71,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 232000
+              "duration": 13000
             }
           }
         ]
@@ -1084,7 +514,7 @@
     "uri": "features/lost_item_management.feature",
     "keyword": "Feature",
     "name": "Lost Item Management",
-    "description": "  As a Columbia University student\n  I want to report lost items\n  So that other students can help me find them",
+    "description": "  As a Columbia University student\n  I want to report and manage my lost items\n  So that others can help me find them",
     "line": 1,
     "elements": [
       {
@@ -1096,14 +526,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
               "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 23726000
+              "duration": 26750000
             }
           }
         ],
@@ -1111,180 +541,10 @@
           {
             "match": {
               "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
             },
             "result": {
               "status": "passed",
               "duration": 4000
-            }
-          }
-        ]
-      },
-      {
-        "id": "lost-item-management;report-a-lost-item-successfully",
-        "keyword": "Scenario",
-        "name": "Report a lost item successfully",
-        "description": "",
-        "line": 9,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "When ",
-            "name": "I click \"Post Lost Item\"",
-            "line": 10,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 10864000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Item Type\" with \"phone\"",
-            "line": 11,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1000000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Description\" with \"iPhone 13 Pro Max, black case, lost near Butler Library\"",
-            "line": 12,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 301000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Location\" with \"Butler Library\"",
-            "line": 13,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1024000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Lost Date\" with \"2024-01-15\"",
-            "line": 14,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 598000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Post Lost Item\"",
-            "line": 15,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 19083000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"Lost item posted successfully!\"",
-            "line": 16,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 518000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should be on the lost item details page",
-            "line": 17,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:157"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 439000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"iPhone 13 Pro Max, black case, lost near Butler Library\"",
-            "line": 18,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 302000
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 13000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 17824000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 87000
             }
           },
           {
@@ -1299,96 +559,107 @@
         ]
       },
       {
-        "id": "lost-item-management;report-lost-item-with-missing-required-fields",
+        "id": "lost-item-management;report-a-lost-item",
         "keyword": "Scenario",
-        "name": "Report lost item with missing required fields",
+        "name": "Report a lost item",
         "description": "",
-        "line": 20,
+        "line": 9,
         "type": "scenario",
         "steps": [
           {
             "keyword": "When ",
             "name": "I click \"Post Lost Item\"",
-            "line": 21,
+            "line": 10,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
               "status": "passed",
-              "duration": 3973000
+              "duration": 5742000
             }
           },
           {
             "keyword": "And ",
-            "name": "I fill in \"Item Type\" with \"phone\"",
-            "line": 22,
+            "name": "I select \"phone\" from \"Item Type\"",
+            "line": 11,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:191"
             },
             "result": {
               "status": "passed",
-              "duration": 517000
+              "duration": 2163000
             }
           },
           {
             "keyword": "And ",
-            "name": "I leave \"Description\" empty",
-            "line": 23,
+            "name": "I fill in \"Description\" with \"Black iPhone with clear case\"",
+            "line": 12,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:141"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
               "status": "passed",
-              "duration": 332000
+              "duration": 700000
             }
           },
           {
             "keyword": "And ",
             "name": "I fill in \"Location\" with \"Butler Library\"",
-            "line": 24,
+            "line": 13,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
               "status": "passed",
-              "duration": 649000
+              "duration": 515000
             }
           },
           {
             "keyword": "And ",
             "name": "I fill in \"Lost Date\" with \"2024-01-15\"",
-            "line": 25,
+            "line": 14,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
               "status": "passed",
-              "duration": 262000
+              "duration": 344000
             }
           },
           {
             "keyword": "And ",
-            "name": "I click \"Post Lost Item\"",
-            "line": 26,
+            "name": "I click \"Submit Lost Item\"",
+            "line": 15,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
               "status": "passed",
-              "duration": 7196000
+              "duration": 19036000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"Description can't be blank\"",
-            "line": 27,
+            "name": "I should be on the dashboard page",
+            "line": 16,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:273"
             },
             "result": {
-              "status": "failed",
-              "error_message": "expected to find text \"Description can't be blank\" in \"Post Lost Item - FoundIt\\n🔍 Post a Lost Item\\nHelp others help you find your lost belongings — share details of what you lost.\\nItem Type Select type phone laptop textbook id keys wallet backpack other\\nDescription\\nLocation Lost\\nDate Lost\\nPhoto URLs (optional) [] 💡 Tips: Use Postimg.cc for easy image uploads. Upload your image, then copy the \\\"Direct link\\\" for best results.\\n← Back to Dashboard\" (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/common_steps.rb:166:in `\"I should see {string}\"'\nfeatures/lost_item_management.feature:27:in `I should see \"Description can't be blank\"'",
-              "duration": 1386000
+              "status": "passed",
+              "duration": 14331000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I should see \"Lost item posted successfully\"",
+            "line": 17,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:196"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3516000
             }
           }
         ],
@@ -1413,14 +684,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
               "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 17174000
+              "duration": 23837000
             }
           }
         ],
@@ -1431,7 +702,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 5000
+              "duration": 75000
             }
           },
           {
@@ -1440,7 +711,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 4000
+              "duration": 5000
             }
           }
         ]
@@ -1450,67 +721,55 @@
         "keyword": "Scenario",
         "name": "View my lost items",
         "description": "",
-        "line": 29,
+        "line": 19,
         "type": "scenario",
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I have posted a lost item \"iPhone\" at \"Butler Library\"",
-            "line": 30,
+            "name": "I have posted a phone item",
+            "line": 20,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:179"
+              "location": "features/step_definitions/common_steps.rb:385"
             },
             "result": {
               "status": "passed",
-              "duration": 2644000
+              "duration": 2108000
             }
           },
           {
             "keyword": "When ",
-            "name": "I click \"Lost Items\"",
-            "line": 31,
+            "name": "I visit the lost items page",
+            "line": 21,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:134"
             },
             "result": {
               "status": "passed",
-              "duration": 5881000
+              "duration": 12557000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"iPhone\"",
-            "line": 32,
+            "name": "I should see \"Black iPhone with clear case\"",
+            "line": 22,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
               "status": "passed",
-              "duration": 452000
+              "duration": 418000
             }
           },
           {
             "keyword": "And ",
             "name": "I should see \"Butler Library\"",
-            "line": 33,
+            "line": 23,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
               "status": "passed",
-              "duration": 651000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Active\"",
-            "line": 34,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1156000
+              "duration": 403000
             }
           }
         ],
@@ -1521,7 +780,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 11000
+              "duration": 13000
             }
           }
         ]
@@ -1535,14 +794,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
               "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 20385000
+              "duration": 23080000
             }
           }
         ],
@@ -1572,88 +831,79 @@
         "keyword": "Scenario",
         "name": "Edit my lost item",
         "description": "",
-        "line": 36,
+        "line": 25,
         "type": "scenario",
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I have posted a lost item \"iPhone\" at \"Butler Library\"",
-            "line": 37,
+            "name": "I have posted a phone item",
+            "line": 26,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:179"
+              "location": "features/step_definitions/common_steps.rb:385"
             },
             "result": {
               "status": "passed",
-              "duration": 1722000
+              "duration": 3073000
             }
           },
           {
             "keyword": "When ",
-            "name": "I go to the lost item details page",
-            "line": 38,
+            "name": "I visit the lost items page",
+            "line": 27,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:220"
+              "location": "features/step_definitions/common_steps.rb:134"
             },
             "result": {
               "status": "passed",
-              "duration": 2868000
+              "duration": 2686000
             }
           },
           {
             "keyword": "And ",
             "name": "I click \"Edit\"",
-            "line": 39,
+            "line": 28,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
-              "status": "failed",
-              "error_message": "Unable to find link or button \"Edit\" (Capybara::ElementNotFound)\n./features/step_definitions/common_steps.rb:97:in `\"I click {string}\"'\nfeatures/lost_item_management.feature:39:in `I click \"Edit\"'",
-              "duration": 978000
+              "status": "passed",
+              "duration": 854000
             }
           },
           {
             "keyword": "And ",
-            "name": "I fill in \"Description\" with \"iPhone 13 Pro Max, black case, lost near Butler Library - UPDATED\"",
-            "line": 40,
+            "name": "I fill in \"Description\" with \"Black iPhone with clear case and Columbia sticker\"",
+            "line": 29,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 670000
             }
           },
           {
             "keyword": "And ",
             "name": "I click \"Update Lost Item\"",
-            "line": 41,
+            "line": 30,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1420000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"Lost item updated successfully!\"",
-            "line": 42,
+            "name": "I should see \"Lost item updated successfully\"",
+            "line": 31,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"iPhone 13 Pro Max, black case, lost near Butler Library - UPDATED\"",
-            "line": 43,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 2063000
             }
           }
         ],
@@ -1678,14 +928,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
               "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 21301000
+              "duration": 26841000
             }
           }
         ],
@@ -1711,71 +961,71 @@
         ]
       },
       {
-        "id": "lost-item-management;mark-lost-item-as-found",
+        "id": "lost-item-management;mark-item-as-found",
         "keyword": "Scenario",
-        "name": "Mark lost item as found",
+        "name": "Mark item as found",
         "description": "",
-        "line": 45,
+        "line": 33,
         "type": "scenario",
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I have posted a lost item \"iPhone\" at \"Butler Library\"",
-            "line": 46,
+            "name": "I have posted a phone item",
+            "line": 34,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:179"
+              "location": "features/step_definitions/common_steps.rb:385"
             },
             "result": {
               "status": "passed",
-              "duration": 1640000
+              "duration": 1775000
             }
           },
           {
             "keyword": "When ",
-            "name": "I go to the lost item details page",
-            "line": 47,
+            "name": "I visit the lost items page",
+            "line": 35,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:220"
+              "location": "features/step_definitions/common_steps.rb:134"
             },
             "result": {
               "status": "passed",
-              "duration": 3772000
+              "duration": 4522000
             }
           },
           {
             "keyword": "And ",
             "name": "I click \"Mark as Found\"",
-            "line": 48,
+            "line": 36,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
               "status": "passed",
-              "duration": 11361000
+              "duration": 2193000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"Item marked as found!\"",
-            "line": 49,
+            "name": "I should see \"Item marked as found\"",
+            "line": 37,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
               "status": "passed",
-              "duration": 1170000
+              "duration": 3400000
             }
           },
           {
             "keyword": "And ",
             "name": "the item status should be \"found\"",
-            "line": 50,
+            "line": 38,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:224"
+              "location": "features/step_definitions/common_steps.rb:320"
             },
             "result": {
               "status": "passed",
-              "duration": 1239000
+              "duration": 4195000
             }
           }
         ],
@@ -1786,382 +1036,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 18000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 21169000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          }
-        ]
-      },
-      {
-        "id": "lost-item-management;close-lost-item-listing",
-        "keyword": "Scenario",
-        "name": "Close lost item listing",
-        "description": "",
-        "line": 52,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I have posted a lost item \"iPhone\" at \"Butler Library\"",
-            "line": 53,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:179"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1225000
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I go to the lost item details page",
-            "line": 54,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:220"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2304000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Close Listing\"",
-            "line": 55,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6009000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"Listing closed successfully!\"",
-            "line": 56,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "expected to find text \"Listing closed successfully!\" in \"Lost item post closed!\\nPhone Lost - FoundIt\\n🔍 Phone Lost\\nClosed\\nItem Type:\\nPhone\\nDescription:\\niPhone lost at Butler Library\\nLocation Lost:\\nButler Library\\nDate Lost:\\nOctober 25, 2025\\nPosted by:\\njohn.doe@columbia.edu\\n← Back to Dashboard\" (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/common_steps.rb:166:in `\"I should see {string}\"'\nfeatures/lost_item_management.feature:56:in `I should see \"Listing closed successfully!\"'",
-              "duration": 835000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "the item status should be \"closed\"",
-            "line": 57,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:224"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 12000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 19999000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 5000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          }
-        ]
-      },
-      {
-        "id": "lost-item-management;cannot-edit-another-user's-lost-item",
-        "keyword": "Scenario",
-        "name": "Cannot edit another user's lost item",
-        "description": "",
-        "line": 59,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I have posted a lost item \"iPhone\" at \"Butler Library\"",
-            "line": 60,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:179"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1386000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "\"jane.smith@columbia.edu\" is logged in",
-            "line": 61,
-            "match": {
-              "location": "features/lost_item_management.feature:61"
-            },
-            "result": {
-              "status": "undefined"
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "\"jane.smith@columbia.edu\" tries to edit my lost item",
-            "line": 62,
-            "match": {
-              "location": "/Users/chunyao/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/cucumber-10.1.1/lib/cucumber/step_match.rb:151"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "\"jane.smith@columbia.edu\" should see \"You can only edit your own lost items\"",
-            "line": 63,
-            "match": {
-              "location": "/Users/chunyao/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/cucumber-10.1.1/lib/cucumber/step_match.rb:151"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 19000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 18380000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2000
-            }
-          }
-        ]
-      },
-      {
-        "id": "lost-item-management;view-all-lost-items-feed",
-        "keyword": "Scenario",
-        "name": "View all lost items feed",
-        "description": "",
-        "line": 65,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I have posted a lost item \"iPhone\" at \"Butler Library\"",
-            "line": 66,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:179"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1842000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "\"jane.smith@columbia.edu\" has posted a lost item \"Laptop\" at \"Mudd Hall\"",
-            "line": 67,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:209"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4577000
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I click \"Lost Items Feed\"",
-            "line": 68,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4423000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"iPhone\"",
-            "line": 69,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 570000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Laptop\"",
-            "line": 70,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 390000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Butler Library\"",
-            "line": 71,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 243000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Mudd Hall\"",
-            "line": 72,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2485000
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 16000
+              "duration": 159000
             }
           }
         ]
@@ -2169,11 +1044,11 @@
     ]
   },
   {
-    "id": "user-registration-and-authentication",
+    "id": "user-registration-and-login",
     "uri": "features/user_authentication.feature",
     "keyword": "Feature",
-    "name": "User Registration and Authentication",
-    "description": "  As a Columbia University student\n  I want to create an account and log in\n  So that I can use the FoundIt platform to report lost and found items",
+    "name": "User Registration and Login",
+    "description": "  As a Columbia University student\n  I want to create an account and log in\n  So that I can use the FoundIt platform",
     "line": 1,
     "elements": [
       {
@@ -2192,7 +1067,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 7141000
+              "duration": 6032000
             }
           }
         ],
@@ -2203,7 +1078,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 5000
+              "duration": 60000
             }
           },
           {
@@ -2218,9 +1093,9 @@
         ]
       },
       {
-        "id": "user-registration-and-authentication;successful-user-registration",
+        "id": "user-registration-and-login;successful-registration",
         "keyword": "Scenario",
-        "name": "Successful user registration",
+        "name": "Successful registration",
         "description": "",
         "line": 9,
         "type": "scenario",
@@ -2230,56 +1105,59 @@
             "name": "I click \"Sign Up\"",
             "line": 10,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
-              "status": "failed",
-              "error_message": "Unable to find link or button \"Create Account\" (Capybara::ElementNotFound)\n./features/step_definitions/common_steps.rb:95:in `\"I click {string}\"'\nfeatures/user_authentication.feature:10:in `I click \"Sign Up\"'",
-              "duration": 744000
+              "status": "passed",
+              "duration": 9873000
             }
           },
           {
             "keyword": "And ",
-            "name": "I fill in \"Email\" with \"john.doe@columbia.edu\"",
+            "name": "I fill in \"Email\" with \"new.student@columbia.edu\"",
             "line": 11,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 505000
             }
           },
           {
             "keyword": "And ",
-            "name": "I fill in \"UNI\" with \"jd1234\"",
+            "name": "I fill in \"First Name\" with \"New\"",
             "line": 12,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 292000
             }
           },
           {
             "keyword": "And ",
-            "name": "I fill in \"First Name\" with \"John\"",
+            "name": "I fill in \"Last Name\" with \"Student\"",
             "line": 13,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 315000
             }
           },
           {
             "keyword": "And ",
-            "name": "I fill in \"Last Name\" with \"Doe\"",
+            "name": "I fill in \"UNI\" with \"ns1234\"",
             "line": 14,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 450000
             }
           },
           {
@@ -2287,10 +1165,11 @@
             "name": "I fill in \"Password\" with \"password123\"",
             "line": 15,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 3888000
             }
           },
           {
@@ -2298,10 +1177,11 @@
             "name": "I fill in \"Password Confirmation\" with \"password123\"",
             "line": 16,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 335000
             }
           },
           {
@@ -2309,43 +1189,35 @@
             "name": "I click \"Create Account\"",
             "line": 17,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 30103000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should be redirected to the dashboard",
+            "name": "I should be on the dashboard page",
             "line": 18,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:153"
+              "location": "features/step_definitions/common_steps.rb:273"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 386000
             }
           },
           {
             "keyword": "And ",
-            "name": "I should see \"Account created successfully!\"",
+            "name": "I should see \"Welcome back, New Student\"",
             "line": 19,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should be logged in as \"John Doe\"",
-            "line": 20,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:174"
-            },
-            "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 2842000
             }
           }
         ],
@@ -2356,7 +1228,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 20000
+              "duration": 64000
             }
           }
         ]
@@ -2377,170 +1249,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2019000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3000
-            }
-          }
-        ]
-      },
-      {
-        "id": "user-registration-and-authentication;registration-with-invalid-email",
-        "keyword": "Scenario",
-        "name": "Registration with invalid email",
-        "description": "",
-        "line": 22,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "When ",
-            "name": "I click \"Sign Up\"",
-            "line": 23,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "Unable to find link or button \"Create Account\" (Capybara::ElementNotFound)\n./features/step_definitions/common_steps.rb:95:in `\"I click {string}\"'\nfeatures/user_authentication.feature:23:in `I click \"Sign Up\"'",
-              "duration": 962000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Email\" with \"john.doe@gmail.com\"",
-            "line": 24,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"UNI\" with \"jd1234\"",
-            "line": 25,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"First Name\" with \"John\"",
-            "line": 26,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Last Name\" with \"Doe\"",
-            "line": 27,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Password\" with \"password123\"",
-            "line": 28,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Password Confirmation\" with \"password123\"",
-            "line": 29,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Create Account\"",
-            "line": 30,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"Email must be a Columbia University email address\"",
-            "line": 31,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 17000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am on the home page",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:4"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1794000
+              "duration": 3860000
             }
           }
         ],
@@ -2560,118 +1269,235 @@
             },
             "result": {
               "status": "passed",
+              "duration": 4000
+            }
+          }
+        ]
+      },
+      {
+        "id": "user-registration-and-login;user-login",
+        "keyword": "Scenario",
+        "name": "User login",
+        "description": "",
+        "line": 21,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a student account",
+            "line": 22,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:304"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3258000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I click \"Log In\"",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2179000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I fill in \"Email\" with \"student@columbia.edu\"",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:147"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 449000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I fill in \"Password\" with \"password123\"",
+            "line": 25,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:147"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 229000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I click \"Log In\"",
+            "line": 26,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11901000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should be on the dashboard page",
+            "line": 27,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:273"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 639000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I should see \"Welcome back, Student User\"",
+            "line": 28,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:196"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1149000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 6,
+        "type": "background",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the home page",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2323000
+            }
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3000
+            }
+          },
+          {
+            "match": {
+              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
+            },
+            "result": {
+              "status": "passed",
               "duration": 3000
             }
           }
         ]
       },
       {
-        "id": "user-registration-and-authentication;registration-with-invalid-uni-format",
+        "id": "user-registration-and-login;invalid-login",
         "keyword": "Scenario",
-        "name": "Registration with invalid UNI format",
+        "name": "Invalid login",
         "description": "",
-        "line": 33,
+        "line": 30,
         "type": "scenario",
         "steps": [
           {
+            "keyword": "Given ",
+            "name": "I have a student account",
+            "line": 31,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:304"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3504000
+            }
+          },
+          {
             "keyword": "When ",
-            "name": "I click \"Sign Up\"",
+            "name": "I click \"Log In\"",
+            "line": 32,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2831000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I fill in \"Email\" with \"student@columbia.edu\"",
+            "line": 33,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:147"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 460000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I fill in \"Password\" with \"wrongpassword\"",
             "line": 34,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
-              "status": "failed",
-              "error_message": "Unable to find link or button \"Create Account\" (Capybara::ElementNotFound)\n./features/step_definitions/common_steps.rb:95:in `\"I click {string}\"'\nfeatures/user_authentication.feature:34:in `I click \"Sign Up\"'",
-              "duration": 1029000
+              "status": "passed",
+              "duration": 456000
             }
           },
           {
             "keyword": "And ",
-            "name": "I fill in \"Email\" with \"john.doe@columbia.edu\"",
+            "name": "I click \"Log In\"",
             "line": 35,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"UNI\" with \"invalid123\"",
-            "line": 36,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"First Name\" with \"John\"",
-            "line": 37,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Last Name\" with \"Doe\"",
-            "line": 38,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Password\" with \"password123\"",
-            "line": 39,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Password Confirmation\" with \"password123\"",
-            "line": 40,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Create Account\"",
-            "line": 41,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 4833000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"Uni is invalid\"",
-            "line": 42,
+            "name": "I should see \"Invalid email or password\"",
+            "line": 36,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 418000
             }
           }
         ],
@@ -2686,7 +1512,17 @@
             }
           }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "id": "user-profile-management",
+    "uri": "features/user_profile.feature",
+    "keyword": "Feature",
+    "name": "User Profile Management",
+    "description": "  As a Columbia University student\n  I want to manage my profile and view other users\n  So that I can build trust and connect with the community",
+    "line": 1,
+    "elements": [
       {
         "keyword": "Background",
         "name": "",
@@ -2696,14 +1532,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am on the home page",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:4"
+              "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 1791000
+              "duration": 16114000
             }
           }
         ],
@@ -2729,79 +1565,43 @@
         ]
       },
       {
-        "id": "user-registration-and-authentication;user-login",
+        "id": "user-profile-management;view-my-profile",
         "keyword": "Scenario",
-        "name": "User login",
+        "name": "View my profile",
         "description": "",
-        "line": 44,
+        "line": 9,
         "type": "scenario",
         "steps": [
           {
-            "keyword": "Given ",
-            "name": "I have an account with email \"jane.smith@columbia.edu\" and password \"password123\"",
-            "line": 45,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:51"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3451000
-            }
-          },
-          {
             "keyword": "When ",
-            "name": "I click \"Log In\"",
-            "line": 46,
+            "name": "I visit the profile page",
+            "line": 10,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:142"
             },
             "result": {
               "status": "passed",
-              "duration": 6045000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Email\" with \"jane.smith@columbia.edu\"",
-            "line": 47,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 565000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Password\" with \"password123\"",
-            "line": 48,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 978000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Log In\"",
-            "line": 49,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 14633000
+              "duration": 38549000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should be redirected to the dashboard",
-            "line": 50,
+            "name": "I should see \"Student User\"",
+            "line": 11,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:153"
+              "location": "features/step_definitions/common_steps.rb:196"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1645000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I should see \"student@columbia.edu\"",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
               "status": "passed",
@@ -2810,418 +1610,14 @@
           },
           {
             "keyword": "And ",
-            "name": "I should see \"Welcome back, Jane Smith!\"",
-            "line": 51,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 733000
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 16000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am on the home page",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:4"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2408000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 7000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 5000
-            }
-          }
-        ]
-      },
-      {
-        "id": "user-registration-and-authentication;failed-login-with-wrong-password",
-        "keyword": "Scenario",
-        "name": "Failed login with wrong password",
-        "description": "",
-        "line": 53,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I have an account with email \"jane.smith@columbia.edu\" and password \"password123\"",
-            "line": 54,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:51"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2956000
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I click \"Log In\"",
-            "line": 55,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2346000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Email\" with \"jane.smith@columbia.edu\"",
-            "line": 56,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 414000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I fill in \"Password\" with \"wrongpassword\"",
-            "line": 57,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 429000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Log In\"",
-            "line": 58,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4461000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"Invalid email or password\"",
-            "line": 59,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1311000
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 13000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am on the home page",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:4"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1055000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 5000
-            }
-          }
-        ]
-      },
-      {
-        "id": "user-registration-and-authentication;user-logout",
-        "keyword": "Scenario",
-        "name": "User logout",
-        "description": "",
-        "line": 61,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
-            "line": 62,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 22538000
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I click \"Logout\"",
-            "line": 63,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3072000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should be redirected to the home page",
-            "line": 64,
-            "match": {
-              "location": "features/user_authentication.feature:64"
-            },
-            "result": {
-              "status": "undefined"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should not be logged in",
-            "line": 65,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:169"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 14000
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "user-dashboard-and-profile-management",
-    "uri": "features/user_profile.feature",
-    "keyword": "Feature",
-    "name": "User Dashboard and Profile Management",
-    "description": "  As a Columbia University student\n  I want to manage my profile and view my activity\n  So that I can track my contributions to the community",
-    "line": 1,
-    "elements": [
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 18758000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3000
-            }
-          }
-        ]
-      },
-      {
-        "id": "user-dashboard-and-profile-management;view-dashboard-with-activity-summary",
-        "keyword": "Scenario",
-        "name": "View dashboard with activity summary",
-        "description": "",
-        "line": 9,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I have posted 2 lost items",
-            "line": 10,
-            "match": {
-              "location": "/Users/chunyao/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/cucumber-10.1.1/lib/cucumber/step_match.rb:151"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "Ambiguous match of \"I have posted 2 lost items\":\n\nfeatures/step_definitions/common_steps.rb:318:in `\"I have posted {int} lost items\"'\nfeatures/step_definitions/common_steps.rb:410:in `\"I have posted {int} lost items\"'\n\nYou can run again with --guess to make Cucumber be more smart about it\n (Cucumber::Ambiguous)\nfeatures/user_profile.feature:10:in `I have posted 2 lost items'",
-              "duration": 39000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I have posted 1 found item",
-            "line": 11,
-            "match": {
-              "location": "features/user_profile.feature:11"
-            },
-            "result": {
-              "status": "undefined"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I have 1 pending match",
-            "line": 12,
-            "match": {
-              "location": "/Users/chunyao/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/cucumber-10.1.1/lib/cucumber/step_match.rb:151"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I visit the dashboard",
+            "name": "I should see \"STU1234\"",
             "line": 13,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:390"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"2 Lost Items\"",
-            "line": 14,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"1 Found Items\"",
-            "line": 15,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"1 Pending Matches\"",
-            "line": 16,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"0 Items Recovered\"",
-            "line": 17,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 3780000
             }
           }
         ],
@@ -3232,7 +1628,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 16000
+              "duration": 15000
             }
           }
         ]
@@ -3246,155 +1642,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
               "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 19109000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          }
-        ]
-      },
-      {
-        "id": "user-dashboard-and-profile-management;view-recent-activity",
-        "keyword": "Scenario",
-        "name": "View recent activity",
-        "description": "",
-        "line": 19,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I posted a lost item \"iPhone\" yesterday",
-            "line": 20,
-            "match": {
-              "location": "/Users/chunyao/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/cucumber-10.1.1/lib/cucumber/step_match.rb:151"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "Ambiguous match of \"I posted a lost item \"iPhone\" yesterday\":\n\nfeatures/step_definitions/common_steps.rb:337:in `\"I posted a lost item {string} yesterday\"'\nfeatures/step_definitions/common_steps.rb:429:in `\"I posted a lost item {string} yesterday\"'\n\nYou can run again with --guess to make Cucumber be more smart about it\n (Cucumber::Ambiguous)\nfeatures/user_profile.feature:20:in `I posted a lost item \"iPhone\" yesterday'",
-              "duration": 30000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "\"jane.smith@columbia.edu\" posted a found item \"Laptop\" yesterday",
-            "line": 21,
-            "match": {
-              "location": "/Users/chunyao/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/cucumber-10.1.1/lib/cucumber/step_match.rb:151"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I visit the dashboard",
-            "line": 22,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:390"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"Recent Lost Items\"",
-            "line": 23,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"iPhone\"",
-            "line": 24,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Recent Active Found Items\"",
-            "line": 25,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Laptop\"",
-            "line": 26,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 16000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 14453000
+              "duration": 20077000
             }
           }
         ],
@@ -3414,111 +1669,101 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3000
+              "duration": 4000
             }
           }
         ]
       },
       {
-        "id": "user-dashboard-and-profile-management;update-profile-information",
+        "id": "user-profile-management;update-my-profile",
         "keyword": "Scenario",
-        "name": "Update profile information",
+        "name": "Update my profile",
         "description": "",
-        "line": 28,
+        "line": 15,
         "type": "scenario",
         "steps": [
           {
             "keyword": "When ",
-            "name": "I click \"My Profile\"",
-            "line": 29,
+            "name": "I visit the profile page",
+            "line": 16,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:142"
             },
             "result": {
               "status": "passed",
-              "duration": 45166000
+              "duration": 12587000
             }
           },
           {
             "keyword": "And ",
             "name": "I click \"Edit Profile\"",
-            "line": 30,
+            "line": 17,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
               "status": "passed",
-              "duration": 14392000
+              "duration": 5939000
             }
           },
           {
             "keyword": "And ",
-            "name": "I fill in \"Bio\" with \"Computer Science student, always losing my phone\"",
-            "line": 31,
+            "name": "I fill in \"Bio\" with \"Computer Science student\"",
+            "line": 18,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
               "status": "passed",
-              "duration": 942000
+              "duration": 947000
             }
           },
           {
             "keyword": "And ",
             "name": "I fill in \"Phone\" with \"555-123-4567\"",
-            "line": 32,
+            "line": 19,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:101"
+              "location": "features/step_definitions/common_steps.rb:147"
             },
             "result": {
               "status": "passed",
-              "duration": 983000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I select \"phone\" as \"Contact Preference\"",
-            "line": 33,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:145"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "Unable to find select box \"Contact Preference\" that is not disabled and Unable to find input box with datalist completion \"Contact Preference\" that is not disabled (Capybara::ElementNotFound)\n./features/step_definitions/common_steps.rb:146:in `\"I select {string} as {string}\"'\nfeatures/user_profile.feature:33:in `I select \"phone\" as \"Contact Preference\"'",
-              "duration": 444000
+              "duration": 619000
             }
           },
           {
             "keyword": "And ",
             "name": "I click \"Update Profile\"",
-            "line": 34,
+            "line": 20,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
+              "location": "features/step_definitions/common_steps.rb:42"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 26319000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"Profile updated successfully!\"",
-            "line": 35,
+            "name": "I should see \"Profile updated successfully\"",
+            "line": 21,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 970000
             }
           },
           {
             "keyword": "And ",
-            "name": "I should see \"Computer Science student, always losing my phone\"",
-            "line": 36,
+            "name": "I should see \"Computer Science student\"",
+            "line": 22,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 549000
             }
           }
         ],
@@ -3529,7 +1774,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 13000
+              "duration": 12000
             }
           }
         ]
@@ -3543,14 +1788,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
               "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 15909000
+              "duration": 14849000
             }
           }
         ],
@@ -3561,140 +1806,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 4000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          }
-        ]
-      },
-      {
-        "id": "user-dashboard-and-profile-management;upload-profile-photo",
-        "keyword": "Scenario",
-        "name": "Upload profile photo",
-        "description": "",
-        "line": 38,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "When ",
-            "name": "I click \"My Profile\"",
-            "line": 39,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 13010000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Edit Profile\"",
-            "line": 40,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6749000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I attach a photo file",
-            "line": 41,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:149"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2149000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Update Profile\"",
-            "line": 42,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 118424000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"Profile updated successfully!\"",
-            "line": 43,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1640000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see my profile photo",
-            "line": 44,
-            "match": {
-              "location": "features/user_profile.feature:44"
-            },
-            "result": {
-              "status": "undefined"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 13000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 23400000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
+              "duration": 5000
             }
           },
           {
@@ -3709,59 +1821,47 @@
         ]
       },
       {
-        "id": "user-dashboard-and-profile-management;view-profile-completion",
+        "id": "user-profile-management;view-profile-completion",
         "keyword": "Scenario",
         "name": "View profile completion",
         "description": "",
-        "line": 46,
+        "line": 24,
         "type": "scenario",
         "steps": [
           {
-            "keyword": "Given ",
-            "name": "my profile is 60% complete",
-            "line": 47,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:365"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1584000
-            }
-          },
-          {
             "keyword": "When ",
-            "name": "I visit my profile page",
-            "line": 48,
+            "name": "I visit the profile page",
+            "line": 25,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:394"
+              "location": "features/step_definitions/common_steps.rb:142"
             },
             "result": {
               "status": "passed",
-              "duration": 4870000
+              "duration": 9940000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"Profile Completion: 60%\"",
-            "line": 49,
+            "name": "I should see \"Profile Completion\"",
+            "line": 26,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "failed",
-              "error_message": "expected to find text \"Profile Completion: 60%\" in \"Profile - FoundIt\\n👤 User Profile\\nYour FoundIt profile and activity overview\\nJ\\nJohn Doe\\nEmail: john.doe@columbia.edu\\nUNI: JOH0001\\nMember Since: October 2025\\nLast Active: Never\\nNew Member ✓ Verified\\nEdit Profile Back to Dashboard\\n0\\nTotal Items Posted\\n0\\nSuccessful Matches\\n0\\nItems Returned\\n0\\nReputation Score\\n📊 Profile Completion\\n40% Complete\\nComplete your profile by adding:\\nBio/About me Phone number Profile photo\\n🔍 Recent Lost Items\\nNo lost items yet\\nPost a Lost Item\\n🎯 Recent Found Items\\nNo found items yet\\nPost a Found Item\" (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/common_steps.rb:166:in `\"I should see {string}\"'\nfeatures/user_profile.feature:49:in `I should see \"Profile Completion: 60%\"'",
-              "duration": 1428000
+              "status": "passed",
+              "duration": 5658000
             }
           },
           {
             "keyword": "And ",
-            "name": "I should see suggestions for completing my profile",
-            "line": 50,
+            "name": "I should see \"Complete your profile\"",
+            "line": 27,
             "match": {
-              "location": "features/user_profile.feature:50"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "undefined"
+              "status": "passed",
+              "duration": 5883000
             }
           }
         ],
@@ -3786,14 +1886,14 @@
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
+            "name": "I am logged in as \"student@columbia.edu\"",
             "line": 7,
             "match": {
               "location": "features/step_definitions/common_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 16357000
+              "duration": 15423000
             }
           }
         ],
@@ -3813,197 +1913,53 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3000
-            }
-          }
-        ]
-      },
-      {
-        "id": "user-dashboard-and-profile-management;view-reputation-and-trust-level",
-        "keyword": "Scenario",
-        "name": "View reputation and trust level",
-        "description": "",
-        "line": 52,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I have a reputation score of 15",
-            "line": 53,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:375"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1694000
-            }
-          },
-          {
-            "keyword": "When ",
-            "name": "I visit my profile page",
-            "line": 54,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:394"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 7449000
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "I should see \"Reputation Score: 15\"",
-            "line": 55,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "expected to find text \"Reputation Score: 15\" in \"Profile - FoundIt\\n👤 User Profile\\nYour FoundIt profile and activity overview\\nJ\\nJohn Doe\\nEmail: john.doe@columbia.edu\\nUNI: JOH0001\\nMember Since: October 2025\\nLast Active: Never\\nGood Samaritan ✓ Verified ⭐ Good Samaritan\\nEdit Profile Back to Dashboard\\n0\\nTotal Items Posted\\n0\\nSuccessful Matches\\n0\\nItems Returned\\n15\\nReputation Score\\n📊 Profile Completion\\n40% Complete\\nComplete your profile by adding:\\nBio/About me Phone number Profile photo\\n🔍 Recent Lost Items\\nNo lost items yet\\nPost a Lost Item\\n🎯 Recent Found Items\\nNo found items yet\\nPost a Found Item\" (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/common_steps.rb:166:in `\"I should see {string}\"'\nfeatures/user_profile.feature:55:in `I should see \"Reputation Score: 15\"'",
-              "duration": 1128000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see \"Trust Level: Good Samaritan\"",
-            "line": 56,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should see a reputation badge",
-            "line": 57,
-            "match": {
-              "location": "features/user_profile.feature:57"
-            },
-            "result": {
-              "status": "undefined"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 14000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 71343000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 5000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
               "duration": 4000
             }
           }
         ]
       },
       {
-        "id": "user-dashboard-and-profile-management;view-other-user's-public-profile",
+        "id": "user-profile-management;view-reputation-score",
         "keyword": "Scenario",
-        "name": "View other user's public profile",
+        "name": "View reputation score",
         "description": "",
-        "line": 59,
+        "line": 29,
         "type": "scenario",
         "steps": [
           {
-            "keyword": "Given ",
-            "name": "\"jane.smith@columbia.edu\" has a public profile",
-            "line": 60,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:380"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4165000
-            }
-          },
-          {
             "keyword": "When ",
-            "name": "I visit \"jane.smith@columbia.edu\"'s profile",
-            "line": 61,
+            "name": "I visit the profile page",
+            "line": 30,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:385"
+              "location": "features/step_definitions/common_steps.rb:142"
             },
             "result": {
               "status": "passed",
-              "duration": 7018000
+              "duration": 5663000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see \"Jane Smith\"",
-            "line": 62,
+            "name": "I should see \"Reputation Score\"",
+            "line": 31,
             "match": {
-              "location": "features/step_definitions/common_steps.rb:165"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "failed",
-              "error_message": "expected to find text \"Jane Smith\" in \"Profile - FoundIt\\n👤 User Profile\\nYour FoundIt profile and activity overview\\nJ\\nJohn Doe\\nEmail: jane.smith@columbia.edu\\nUNI: ABC0004\\nMember Since: October 2025\\nLast Active: Never\\nNew Member ✓ Verified\\nEdit Profile Back to Dashboard\\n0\\nTotal Items Posted\\n0\\nSuccessful Matches\\n0\\nItems Returned\\n0\\nReputation Score\\n📊 Profile Completion\\n40% Complete\\nComplete your profile by adding:\\nBio/About me Phone number Profile photo\\n🔍 Recent Lost Items\\nNo lost items yet\\nPost a Lost Item\\n🎯 Recent Found Items\\nNo found items yet\\nPost a Found Item\" (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/common_steps.rb:166:in `\"I should see {string}\"'\nfeatures/user_profile.feature:62:in `I should see \"Jane Smith\"'",
-              "duration": 1318000
+              "status": "passed",
+              "duration": 761000
             }
           },
           {
             "keyword": "And ",
-            "name": "I should see her recent activity",
-            "line": 63,
+            "name": "I should see \"Community Member\"",
+            "line": 32,
             "match": {
-              "location": "features/user_profile.feature:63"
+              "location": "features/step_definitions/common_steps.rb:196"
             },
             "result": {
-              "status": "undefined"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I should not see her private information",
-            "line": 64,
-            "match": {
-              "location": "features/user_profile.feature:64"
-            },
-            "result": {
-              "status": "undefined"
+              "status": "passed",
+              "duration": 1833000
             }
           }
         ],
@@ -4014,139 +1970,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 84000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 6,
-        "type": "background",
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am logged in as \"john.doe@columbia.edu\"",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 18431000
-            }
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 5000
-            }
-          },
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4000
-            }
-          }
-        ]
-      },
-      {
-        "id": "user-dashboard-and-profile-management;privacy-settings",
-        "keyword": "Scenario",
-        "name": "Privacy settings",
-        "description": "",
-        "line": 66,
-        "type": "scenario",
-        "steps": [
-          {
-            "keyword": "When ",
-            "name": "I click \"My Profile\"",
-            "line": 67,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 6181000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Edit Profile\"",
-            "line": 68,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3180000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I select \"private\" as \"Profile Visibility\"",
-            "line": 69,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:145"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "Unable to find option \"private\" within #<Capybara::Node::Element tag=\"select\" path=\"/html/body/div/form/div[3]/div[2]/select\"> (Capybara::ElementNotFound)\n./features/step_definitions/common_steps.rb:146:in `\"I select {string} as {string}\"'\nfeatures/user_profile.feature:69:in `I select \"private\" as \"Profile Visibility\"'",
-              "duration": 1465000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "I click \"Update Profile\"",
-            "line": 70,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:77"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "Then ",
-            "name": "my profile should be private",
-            "line": 71,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:399"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "other users should not see my detailed information",
-            "line": 72,
-            "match": {
-              "location": "features/step_definitions/common_steps.rb:404"
-            },
-            "result": {
-              "status": "skipped"
-            }
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "capybara-3.40.0/lib/capybara/cucumber.rb:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 13000
+              "duration": 12000
             }
           }
         ]
