@@ -150,8 +150,8 @@
       <% @found_items.each do |item| %>
         <div class="card feed-card" data-desc="<%= item.description %>">
           <%= link_to found_item_path(item), style: "text-decoration: none; color: inherit;" do %>
-            <% if item.photos_array.any? %>
-              <img src="<%= item.photos_array.first %>" alt="Found item image">
+            <% if item.photos.attached? %>
+              <%= image_tag item.photos.first, alt: "Found item image" %>
             <% else %>
               <img src="https://via.placeholder.com/400x200?text=No+Image" alt="No image available">
             <% end %>

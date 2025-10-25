@@ -106,7 +106,7 @@
       <h1>📦 Post a Found Item</h1>
       <p class="subtitle">Help others recover their lost belongings — share details of what you found.</p>
 
-      <%= form_with model: @found_item, url: found_items_path, local: true do |f| %>
+      <%= form_with model: @found_item, url: found_items_path, local: true, multipart: true do |f| %>
         <div>
           <%= f.label :item_type, "Item Type" %>
           <%= f.select :item_type,
@@ -137,14 +137,13 @@
         </div>
 
         <div>
-          <%= f.label :photos, "Photo URLs (optional)" %>
-          <%= f.text_area :photos, 
-              rows: 3,
-              placeholder: "Paste image URLs here (one per line or separated by commas):\nhttps://example.com/image1.jpg\nhttps://example.com/image2.jpg",
-              class: "photo-urls-input" %>
+          <%= f.label :photos, "Upload Photos (optional)" %>
+          <%= f.file_field :photos, 
+              multiple: true,
+              accept: "image/*",
+              class: "photo-upload-input" %>
           <small class="help-text">
-            💡 <strong>Tips:</strong> Use <a href="https://postimg.cc" target="_blank">Postimg.cc</a> for easy image uploads. 
-            Upload your image, then copy the "Direct link" for best results.
+            💡 <strong>Tips:</strong> You can select multiple photos at once. Supported formats: JPG, PNG, GIF, WebP
           </small>
           <div id="photo-preview" style="margin-top: 10px;"></div>
         </div>

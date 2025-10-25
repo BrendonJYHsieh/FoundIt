@@ -106,7 +106,7 @@
       <h1>🔍 Edit Lost Item</h1>
       <p class="subtitle">Update the details of your lost item.</p>
 
-      <%= form_with model: @lost_item, url: lost_item_path(@lost_item), method: :patch, local: true do |f| %>
+      <%= form_with model: @lost_item, url: lost_item_path(@lost_item), method: :patch, local: true, multipart: true do |f| %>
         <div>
           <%= f.label :item_type, "Item Type" %>
           <%= f.select :item_type,
@@ -137,8 +137,14 @@
         </div>
 
         <div>
-          <%= f.label :photos, "Photo URLs (optional)" %>
-          <%= f.text_field :photos, placeholder: "Paste image URLs separated by commas" %>
+          <%= f.label :photos, "Upload Photos (optional)" %>
+          <%= f.file_field :photos, 
+              multiple: true,
+              accept: "image/*",
+              class: "photo-upload-input" %>
+          <small class="help-text">
+            💡 <strong>Tips:</strong> You can select multiple photos at once. Supported formats: JPG, PNG, GIF, WebP
+          </small>
         </div>
 
         <div style="text-align:center;">

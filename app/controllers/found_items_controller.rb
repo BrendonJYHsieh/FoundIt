@@ -78,18 +78,8 @@ class FoundItemsController < ApplicationController
   private
 
   def found_item_params
-    data = params.require(:found_item).permit(
-      :item_type, :description, :location, :found_date, :status, :photos
+    params.require(:found_item).permit(
+      :item_type, :description, :location, :found_date, :status, photos: []
     )
-    
-    # Clean and validate photo URLs
-    if data[:photos].present?
-      valid_urls = clean_image_urls(data[:photos])
-      data[:photos] = valid_urls.to_json
-    else
-      data[:photos] = '[]'
-    end
-  
-    data
   end  
 end

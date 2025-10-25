@@ -66,27 +66,22 @@ RSpec.describe FoundItem, type: :model do
   describe 'methods' do
     let(:found_item) { create(:found_item) }
 
-    describe '#photos_array' do
-      it 'returns empty array when no photos' do
-        expect(found_item.photos_array).to eq([])
+    describe 'photo attachments' do
+      it 'can attach multiple photos' do
+        photo1 = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'test_image.jpg'), 'image/jpeg')
+        photo2 = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'test_image.jpg'), 'image/jpeg')
+        
+        found_item.photos.attach([photo1, photo2])
+        expect(found_item.photos.count).to eq(2)
       end
 
-      it 'returns parsed photos when photos exist' do
-        found_item.update!(photos: '["photo1.jpg", "photo2.jpg"]')
-        expect(found_item.photos_array).to eq(['photo1.jpg', 'photo2.jpg'])
-      end
-    end
-
-    describe '#photos_array=' do
-      it 'sets photos from array' do
-        photos = ['photo1.jpg', 'photo2.jpg']
-        found_item.photos_array = photos
-        expect(found_item.photos).to eq(photos.to_json)
-      end
-
-      it 'handles empty array' do
-        found_item.photos_array = []
-        expect(found_item.photos).to eq('[]')
+      it 'can detach photos' do
+        photo = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'test_image.jpg'), 'image/jpeg')
+        found_item.photos.attach(photo)
+        expect(found_item.photos.count).to eq(1)
+        
+        found_item.photos.purge
+        expect(found_item.photos.count).to eq(0)
       end
     end
 
@@ -168,33 +163,7 @@ RSpec.describe FoundItem, type: :model do
     end
   end
 
-  describe 'photo management' do
-    let(:found_item) { create(:found_item) }
-
-    describe '#photos_array' do
-      it 'returns empty array when no photos' do
-        expect(found_item.photos_array).to eq([])
-      end
-
-      it 'returns parsed photos when photos exist' do
-        found_item.update!(photos: '["photo1.jpg", "photo2.jpg"]')
-        expect(found_item.photos_array).to eq(['photo1.jpg', 'photo2.jpg'])
-      end
-    end
-
-    describe '#photos_array=' do
-      it 'sets photos from array' do
-        photos = ['photo1.jpg', 'photo2.jpg']
-        found_item.photos_array = photos
-        expect(found_item.photos).to eq(photos.to_json)
-      end
-
-      it 'handles empty array' do
-        found_item.photos_array = []
-        expect(found_item.photos).to eq('[]')
-      end
-    end
-  end
+  # Old photo management tests removed - now using Active Storage
 
   describe 'scopes with complex queries' do
     let!(:phone_library) { create(:found_item, item_type: 'phone', location: 'Butler Library', found_date: 1.day.ago) }

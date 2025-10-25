@@ -7,11 +7,7 @@ FactoryBot.define do
     location { "Butler Library" }
     found_date { Date.current }
     status { "active" }
-    photos { "[]" }
-
-    trait :with_photos do
-      photos { '["photo1.jpg", "photo2.jpg"]' }
-    end
+    # Photos are now handled by Active Storage has_many_attached :photos
 
     trait :returned do
       status { "returned" }

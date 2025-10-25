@@ -107,18 +107,8 @@ class LostItemsController < ApplicationController
   end
 
   def lost_item_params
-    data = params.require(:lost_item).permit(
-      :item_type, :description, :location, :lost_date, :status, :photos
+    params.require(:lost_item).permit(
+      :item_type, :description, :location, :lost_date, :status, photos: []
     )
-    
-    # Clean and validate photo URLs
-    if data[:photos].present?
-      valid_urls = clean_image_urls(data[:photos])
-      data[:photos] = valid_urls.to_json
-    else
-      data[:photos] = '[]'
-    end
-  
-    data
   end
 end

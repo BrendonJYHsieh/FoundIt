@@ -66,27 +66,22 @@ RSpec.describe LostItem, type: :model do
   describe 'methods' do
     let(:lost_item) { create(:lost_item) }
 
-    describe '#photos_array' do
-      it 'returns empty array when no photos' do
-        expect(lost_item.photos_array).to eq([])
+    describe 'photo attachments' do
+      it 'can attach multiple photos' do
+        photo1 = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'test_image.jpg'), 'image/jpeg')
+        photo2 = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'test_image.jpg'), 'image/jpeg')
+        
+        lost_item.photos.attach([photo1, photo2])
+        expect(lost_item.photos.count).to eq(2)
       end
 
-      it 'returns parsed photos when photos exist' do
-        lost_item.update!(photos: '["photo1.jpg", "photo2.jpg"]')
-        expect(lost_item.photos_array).to eq(['photo1.jpg', 'photo2.jpg'])
-      end
-    end
-
-    describe '#photos_array=' do
-      it 'sets photos from array' do
-        photos = ['photo1.jpg', 'photo2.jpg']
-        lost_item.photos_array = photos
-        expect(lost_item.photos).to eq(photos.to_json)
-      end
-
-      it 'handles empty array' do
-        lost_item.photos_array = []
-        expect(lost_item.photos).to eq('[]')
+      it 'can detach photos' do
+        photo = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'test_image.jpg'), 'image/jpeg')
+        lost_item.photos.attach(photo)
+        expect(lost_item.photos.count).to eq(1)
+        
+        lost_item.photos.purge
+        expect(lost_item.photos.count).to eq(0)
       end
     end
 
@@ -179,33 +174,7 @@ RSpec.describe LostItem, type: :model do
     end
   end
 
-  describe 'photo management' do
-    let(:lost_item) { create(:lost_item) }
-
-    describe '#photos_array' do
-      it 'returns empty array when no photos' do
-        expect(lost_item.photos_array).to eq([])
-      end
-
-      it 'returns parsed photos when photos exist' do
-        lost_item.update!(photos: '["photo1.jpg", "photo2.jpg"]')
-        expect(lost_item.photos_array).to eq(['photo1.jpg', 'photo2.jpg'])
-      end
-    end
-
-    describe '#photos_array=' do
-      it 'sets photos from array' do
-        photos = ['photo1.jpg', 'photo2.jpg']
-        lost_item.photos_array = photos
-        expect(lost_item.photos).to eq(photos.to_json)
-      end
-
-      it 'handles empty array' do
-        lost_item.photos_array = []
-        expect(lost_item.photos).to eq('[]')
-      end
-    end
-  end
+  # Old photo management tests removed - now using Active Storage
 
   describe 'verification questions' do
     let(:lost_item) { create(:lost_item) }

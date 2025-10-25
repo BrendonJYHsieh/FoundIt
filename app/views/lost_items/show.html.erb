@@ -188,22 +188,15 @@
           <p><%= @lost_item.user.email %></p>
         </div>
 
-        <% if @lost_item.photos_array.any? %>
+        <% if @lost_item.photos.attached? %>
           <div class="detail">
             <strong>Photos:</strong>
             <div class="photos">
-              <% @lost_item.photos_array.each_with_index do |url, index| %>
+              <% @lost_item.photos.each_with_index do |photo, index| %>
                 <div class="photo-container">
-                  <img src="<%= url %>" 
-                       alt="Lost item photo <%= index + 1 %>"
-                       loading="lazy"
-                       onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                       onload="this.nextElementSibling.style.display='none';">
-                  <div class="photo-error" style="display: none;">
-                    <p>❌ Image failed to load</p>
-                    <small>URL: <%= url %></small>
-                    <br><small>Try using <a href="https://postimg.cc" target="_blank">Postimg.cc</a> for reliable image hosting</small>
-                  </div>
+                  <%= image_tag photo, 
+                      alt: "Lost item photo #{index + 1}",
+                      loading: "lazy" %>
                 </div>
               <% end %>
             </div>

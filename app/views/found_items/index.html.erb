@@ -79,8 +79,8 @@
         <div class="found-items-list">
           <% @found_items.each do |item| %>
             <%= link_to found_item_path(item), class: "found-card" do %>
-              <% if item.photos_array.any? %>
-                <img src="<%= item.photos_array.first %>" alt="Found item image">
+              <% if item.photos.attached? %>
+                <%= image_tag item.photos.first, alt: "Found item image" %>
               <% else %>
                 <img src="https://via.placeholder.com/400x200?text=No+Image" alt="No image available">
               <% end %>

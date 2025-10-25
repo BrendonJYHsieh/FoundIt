@@ -3,6 +3,8 @@ class LostItem < ApplicationRecord
   has_many :matches, dependent: :destroy
   has_many :found_items, through: :matches
   
+  has_many_attached :photos
+  
   validates :item_type, presence: true, inclusion: { in: %w[phone laptop textbook id keys wallet backpack other] }
   validates :description, presence: true, length: { minimum: 10, maximum: 500 }
   validates :location, presence: true
@@ -25,13 +27,8 @@ class LostItem < ApplicationRecord
     self.verification_questions = questions.to_json
   end
   
-  def photos_array
-    JSON.parse(photos || '[]')
-  end
-  
-  def photos_array=(photo_urls)
-    self.photos = photo_urls.to_json
-  end
+  # Photos are now handled by Active Storage has_many_attached :photos
+  # No need for custom methods anymore
   
   def find_potential_matches
     FindMatchesJob.perform_later(self)
@@ -50,6 +47,6 @@ class LostItem < ApplicationRecord
   
   def set_defaults
     self.status ||= 'active'
-    self.photos ||= '[]'
+    # Photos are now handled by Active Storage, no need to set default
   end
 end

@@ -1,2 +1,166 @@
-<h1>FoundItems#edit</h1>
-<p>Find me in app/views/found_items/edit.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Found Item - FoundIt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #2E5BBA;
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      p.subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      form {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #2E5BBA;
+      }
+
+      input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 1rem;
+        transition: border 0.2s ease;
+        box-sizing: border-box;
+      }
+
+      input:focus, textarea:focus, select:focus {
+        border-color: #2E5BBA;
+        box-shadow: 0 0 0 2px rgba(46, 91, 186, 0.1);
+        outline: none;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #2E5BBA;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 5px;
+      }
+
+      .btn:hover {
+        background: #1E4A9A;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(46, 91, 186, 0.3);
+      }
+
+      .back-link {
+        text-align: center;
+        margin-top: 25px;
+      }
+
+      .back-link a {
+        color: #2E5BBA;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .back-link a:hover {
+        text-decoration: underline;
+      }
+
+      .help-text {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: -15px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>📦 Edit Found Item</h1>
+      <p class="subtitle">Update the details of your found item.</p>
+
+      <%= form_with model: @found_item, url: found_item_path(@found_item), method: :patch, local: true, multipart: true do |f| %>
+        <div>
+          <%= f.label :item_type, "Item Type" %>
+          <%= f.select :item_type,
+            options_for_select(%w[phone laptop textbook id keys wallet backpack other], @found_item.item_type),
+            { include_blank: "Select type" },
+            required: true %>
+        </div>
+
+        <div>
+          <%= f.label :description, "Description" %>
+          <%= f.text_area :description, 
+              rows: 4,
+              placeholder: "Describe the item in detail...",
+              required: true %>
+        </div>
+
+        <div>
+          <%= f.label :location, "Location Found" %>
+          <%= f.text_field :location, placeholder: "e.g., Lerner Hall entrance", required: true %>
+        </div>
+
+        <div>
+          <%= f.label :found_date, "Date Found" %>
+          <%= f.date_field :found_date, required: true %>
+        </div>
+
+        <div>
+          <%= f.label :photos, "Upload Photos (optional)" %>
+          <%= f.file_field :photos, 
+              multiple: true,
+              accept: "image/*",
+              class: "photo-upload-input" %>
+          <small class="help-text">
+            💡 <strong>Tips:</strong> You can select multiple photos at once. Supported formats: JPG, PNG, GIF, WebP
+          </small>
+        </div>
+
+        <div style="text-align:center;">
+          <%= f.submit "Update Found Item", class: "btn" %>
+        </div>
+      <% end %>
+
+      <div class="back-link">
+        <%= link_to "← Back to Found Item", found_item_path(@found_item) %>
+      </div>
+    </div>
+  </body>
+</html>
