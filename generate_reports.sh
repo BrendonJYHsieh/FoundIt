@@ -19,19 +19,19 @@ TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 
 # Function to print colored output
 print_status() {
-    echo -e "${BLUE}[INFO]${NC} $1"
+    printf "${BLUE}[INFO]${NC} %s\n" "$1"
 }
 
 print_success() {
-    echo -e "${GREEN}[SUCCESS]${NC} $1"
+    printf "${GREEN}[SUCCESS]${NC} %s\n" "$1"
 }
 
 print_warning() {
-    echo -e "${YELLOW}[WARNING]${NC} $1"
+    printf "${YELLOW}[WARNING]${NC} %s\n" "$1"
 }
 
 print_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
+    printf "${RED}[ERROR]${NC} %s\n" "$1"
 }
 
 # Function to check if command exists
@@ -88,7 +88,6 @@ generate_rspec_reports() {
         --format documentation \
         --format html --out "$REPORTS_DIR/rspec_report.html" \
         --format json --out "$REPORTS_DIR/rspec_report.json" \
-        --format junit --out "$REPORTS_DIR/rspec_junit.xml" \
         --format progress
     
     print_success "RSpec reports generated"
@@ -102,7 +101,6 @@ generate_cucumber_reports() {
     bundle exec cucumber \
         --format html --out "$REPORTS_DIR/cucumber_report.html" \
         --format json --out "$REPORTS_DIR/cucumber_report.json" \
-        --format junit --out "$REPORTS_DIR/cucumber_junit.xml" \
         --format progress
     
     print_success "Cucumber reports generated"
@@ -166,10 +164,6 @@ fi)
 ### JSON Reports
 - RSpec: $REPORTS_DIR/rspec_report.json
 - Cucumber: $REPORTS_DIR/cucumber_report.json
-
-### XML Reports (JUnit format)
-- RSpec: $REPORTS_DIR/rspec_junit.xml
-- Cucumber: $REPORTS_DIR/cucumber_junit.xml
 
 ## Quick Access Commands
 - Open HTML coverage report: open $COVERAGE_DIR/index.html
@@ -283,7 +277,7 @@ main() {
     done
     
     # Start report generation
-    echo -e "${BLUE}🔍 FoundIt Test Report Generator${NC}"
+    printf "${BLUE}🔍 FoundIt Test Report Generator${NC}\n"
     echo "=============================================="
     
     # Check prerequisites
@@ -323,7 +317,7 @@ main() {
     
     # Final success message
     echo ""
-    echo -e "${GREEN}✅ Report generation completed successfully!${NC}"
+    printf "${GREEN}✅ Report generation completed successfully!${NC}\n"
     echo ""
     echo "📊 Reports available at:"
     echo "   - Coverage: $COVERAGE_DIR/index.html"
